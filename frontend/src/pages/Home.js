@@ -1,11 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import slider1 from '../assets/images/hero/slider1.jpg';
 import slider2 from '../assets/images/hero/slider2.jpg';
+import peoples from '../assets/images/hero/peoples.png';
+
+// Simple intersection observer hook for reveal-on-scroll animations
+function useReveal() {
+  const elementRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const target = elementRef.current;
+    if (!target) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
+
+  return { ref: elementRef, isVisible };
+}
 
 const Home = () => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentIndustry, setCurrentIndustry] = useState(0);
   const [currentService, setCurrentService] = useState(0);
+  const statsReveal = useReveal();
+  const journeyReveal = useReveal();
+  const industryReveal = useReveal();
+  const servicesReveal = useReveal();
+  const whyReveal = useReveal();
   
   const slides = [
     {
@@ -58,6 +92,14 @@ const Home = () => {
     }
   ];
 
+  const slugify = (text) =>
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
+
   // Auto-slide functionality
   useEffect(() => {
     const timer = setInterval(() => {
@@ -103,6 +145,11 @@ const Home = () => {
 
   return (
     <div className="relative min-h-screen">
+      {/** Section reveal hooks */}
+      {/** Each will be used to animate sections when they enter the viewport */}
+      {(() => {
+        return null;
+      })()}
       {/* Hero Section with Slider */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Images with Slider Effect */}
@@ -172,7 +219,7 @@ const Home = () => {
           {/* Call to Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-8">
             {/* Schedule Consultation Button */}
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg transition duration-300 transform hover:scale-105 flex items-center space-x-2 shadow-lg">
+            <button onClick={() => navigate('/consultation')} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg transition duration-300 transform hover:scale-105 flex items-center space-x-2 shadow-lg">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
@@ -182,7 +229,7 @@ const Home = () => {
             {/* Discover More Arrow */}
             <div className="flex flex-col items-center space-y-2">
               <p className="text-gray-300 text-sm font-medium">Discover More</p>
-              <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition duration-300 cursor-pointer">
+              <div onClick={() => document.getElementById('our-services')?.scrollIntoView({ behavior: 'smooth' })} className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition duration-300 cursor-pointer">
                 <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
@@ -190,7 +237,7 @@ const Home = () => {
             </div>
             
             {/* Explore Services Button */}
-            <button className="bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold px-8 py-4 rounded-lg transition duration-300 hover:bg-white/20 flex items-center space-x-2">
+            <button onClick={() => navigate('/services')} className="bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold px-8 py-4 rounded-lg transition duration-300 hover:bg-white/20 flex items-center space-x-2">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
@@ -216,75 +263,70 @@ const Home = () => {
       </section>
       
       {/* Statistics Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              An integral part of corporate India's journey
-            </h2>
-            <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-              Trusted advisors to multinationals, leading Indian businesses and leadership professionals
-            </p>
-          </div>
-          
-          {/* Statistics Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-            {/* Years of Market Leadership */}
-            <div className="text-center">
-              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-3xl font-bold text-white">50+</span>
+      <section ref={statsReveal.ref} className={`py-20 bg-white transition-all duration-700 ease-out ${statsReveal.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                  An integral part of corporate India's journey
+                </h2>
+                <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                  Trusted advisors to multinationals, leading Indian businesses and leadership professionals
+                </p>
               </div>
-              <p className="text-gray-900 font-medium text-center">
-                Years of market leadership
-              </p>
-            </div>
-            
-            {/* Careers Built */}
-            <div className="text-center">
-              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-3xl font-bold text-white">200k+</span>
+              {/* Statistics Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+                {/* Years of Market Leadership */}
+                <div className="text-center">
+                  <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <span className="text-3xl font-bold text-white">50+</span>
+                  </div>
+                  <p className="text-gray-900 font-medium text-center">
+                    Years of market leadership
+                  </p>
+                </div>
+                {/* Careers Built */}
+                <div className="text-center">
+                  <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <span className="text-3xl font-bold text-white">200k+</span>
+                  </div>
+                  <p className="text-gray-900 font-medium text-center">
+                    Careers built to date
+                  </p>
+                </div>
+                {/* Consultants Pan India */}
+                <div className="text-center">
+                  <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <span className="text-3xl font-bold text-white">150+</span>
+                  </div>
+                  <p className="text-gray-900 font-medium text-center">
+                    Consultants pan India
+                  </p>
+                </div>
+                {/* Industry Specializations */}
+                <div className="text-center">
+                  <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <span className="text-3xl font-bold text-white">21</span>
+                  </div>
+                  <p className="text-gray-900 font-medium text-center">
+                    Industry specialisations
+                  </p>
+                </div>
+                {/* Offices Across India */}
+                <div className="text-center">
+                  <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <span className="text-3xl font-bold text-white">8</span>
+                  </div>
+                  <p className="text-gray-900 font-medium text-center">
+                    Offices across India
+                  </p>
+                </div>
               </div>
-              <p className="text-gray-900 font-medium text-center">
-                Careers built to date
-              </p>
             </div>
-            
-            {/* Consultants Pan India */}
-            <div className="text-center">
-              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-3xl font-bold text-white">150+</span>
-              </div>
-              <p className="text-gray-900 font-medium text-center">
-                Consultants pan India
-              </p>
-            </div>
-            
-            {/* Industry Specializations */}
-            <div className="text-center">
-              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-3xl font-bold text-white">21</span>
-              </div>
-              <p className="text-gray-900 font-medium text-center">
-                Industry specialisations
-              </p>
-            </div>
-            
-            {/* Offices Across India */}
-            <div className="text-center">
-              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-3xl font-bold text-white">8</span>
-              </div>
-              <p className="text-gray-900 font-medium text-center">
-                Offices across India
-              </p>
-            </div>
-          </div>
-        </div>
       </section>
       
       {/* Our People Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out" style={{}}>
           <div className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Our People
@@ -293,12 +335,15 @@ const Home = () => {
               The Executive Search industry's most seasoned consultants, bringing an agile mindset, an empathetic perspective and an entrepreneurial spirit to every client engagement.
             </p>
           </div>
+          <div className="mt-10 rounded-2xl overflow-hidden shadow-md">
+            <img src={peoples} alt="Our People" className="w-full h-auto object-cover" />
+          </div>
         </div>
       </section>
       
       {/* Our Journey Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref={journeyReveal.ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out ${journeyReveal.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
               Our Journey
@@ -423,7 +468,7 @@ const Home = () => {
       
       {/* Industry Specialisations Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref={industryReveal.ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out ${industryReveal.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Industry Specialisations
@@ -499,8 +544,8 @@ const Home = () => {
       </section>
       
       {/* Our Services Section */}
-      <section className="py-20 bg-blue-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="our-services" className="py-20 bg-blue-900">
+        <div ref={servicesReveal.ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out ${servicesReveal.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Our Services
@@ -565,7 +610,7 @@ const Home = () => {
                         </p>
                         
                         {/* Action Button */}
-                        <button className="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110">
+                        <button onClick={() => navigate(`/services/${slugify(service.title)}`)} className="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110">
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
@@ -602,9 +647,73 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Additional Content Sections */}
+      {/* Testimonials Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Testimonials</h2>
+            <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
+              Our constant endeavor is to delight our clients through service excellence
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Testimonial Card 1 */}
+            <div className="rounded-2xl border-8 border-blue-100">
+              <div className="relative bg-white rounded-xl p-8">
+                <div className="absolute top-4 right-4 text-blue-200">
+                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h4a4 4 0 010 8H7V8zm10 0h-4a4 4 0 000 8h4V8z" />
+                  </svg>
+                </div>
+                <div className="flex items-center mb-4">
+                  <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                    <svg className="w-8 h-8 text-blue-600" viewBox="0 0 20 20" fill="currentColor"><path d="M2 10a8 8 0 1116 0A8 8 0 012 10zm7-3a1 1 0 012 0v3a1 1 0 01-1 1H7a1 1 0 110-2h2V7z"/></svg>
+                  </div>
+                  <div className="text-blue-700 font-semibold">Client Testimonial</div>
+                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  We are happy to recommend Siddhivinayak Consultants for their exceptional business partnering.
+                  They demonstrated remarkable dedication and expertise in managing our leadership mandates.
+                </p>
+                <div className="mt-6 text-sm text-gray-500">
+                  <div className="font-semibold text-gray-700">Samuel Joseph Jebaraj</div>
+                  <div>Deputy Managing Director, BFSI</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial Card 2 */}
+            <div className="rounded-2xl border-8 border-blue-100">
+              <div className="relative bg-white rounded-xl p-8">
+                <div className="absolute top-4 right-4 text-blue-200">
+                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h4a4 4 0 010 8H7V8zm10 0h-4a4 4 0 000 8h4V8z" />
+                  </svg>
+                </div>
+                <div className="flex items-center mb-4">
+                  <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                    <svg className="w-8 h-8 text-blue-600" viewBox="0 0 20 20" fill="currentColor"><path d="M2 10a8 8 0 1116 0A8 8 0 012 10zm7-3a1 1 0 012 0v3a1 1 0 01-1 1H7a1 1 0 110-2h2V7z"/></svg>
+                  </div>
+                  <div className="text-blue-700 font-semibold">Client Testimonial</div>
+                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  The team supported us immensely in capability building initiatives through focused searches
+                  and quick turnaround, enabling the right selections.
+                </p>
+                <div className="mt-6 text-sm text-gray-500">
+                  <div className="font-semibold text-gray-700">Saba Adil</div>
+                  <div>CHRO, Edelweiss Life</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Additional Content Sections */}
+      <section className="py-20 bg-white">
+        <div ref={whyReveal.ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out ${whyReveal.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Why Choose Siddhivinayak Consultants?

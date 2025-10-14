@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import heroImage from '../../assets/images/hero/hero.jpg';
 
 const Staffing = () => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setIsMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Staffing Solutions
-          </h1>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-            Flexible staffing solutions to meet your dynamic business needs
-          </p>
+      {/* Hero Section with Background Image */}
+      <div className="relative h-[260px] md:h-[360px] overflow-hidden">
+        <div
+          className={`absolute inset-0 bg-cover bg-center transform transition-transform duration-[1200ms] ease-out ${isMounted ? 'scale-100' : 'scale-110'}`}
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative h-full flex items-center justify-center">
+          <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center transition-all duration-700 ease-out ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Staffing Solutions
+            </h1>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              Flexible staffing solutions to meet your dynamic business needs
+            </p>
+          </div>
         </div>
       </div>
 
@@ -96,12 +111,12 @@ const Staffing = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-lg p-8 text-center text-white">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-8 text-center text-white">
           <h2 className="text-3xl font-bold mb-4">Need Flexible Staffing Solutions?</h2>
           <p className="text-xl mb-6 opacity-90">
             Let us provide you with the right talent at the right time for your business needs.
           </p>
-          <button className="bg-white text-green-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition duration-300">
+          <button className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition duration-300">
             Contact Us Today
           </button>
         </div>

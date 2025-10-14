@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import heroImage from '../../assets/images/hero/hero.jpg';
 
 const StaffRecruitment = () => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setIsMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Staff Recruitment
-          </h1>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-            Find the right talent for your organization with our comprehensive recruitment solutions
-          </p>
+      {/* Hero Section with Background Image */}
+      <div className="relative h-[260px] md:h-[360px] overflow-hidden">
+        <div
+          className={`absolute inset-0 bg-cover bg-center transform transition-transform duration-[1200ms] ease-out ${isMounted ? 'scale-100' : 'scale-110'}`}
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative h-full flex items-center justify-center">
+          <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center transition-all duration-700 ease-out ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Staff Recruitment
+            </h1>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              Find the right talent for your organization with our comprehensive recruitment solutions
+            </p>
+          </div>
         </div>
       </div>
 

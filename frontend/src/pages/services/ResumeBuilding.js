@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import heroImage from '../../assets/images/hero/hero.jpg';
 
 const ResumeBuilding = () => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setIsMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Resume Building
-          </h1>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-            Create compelling resumes that get you noticed by top employers
-          </p>
+      {/* Hero Section with Background Image */}
+      <div className="relative h-[260px] md:h-[360px] overflow-hidden">
+        <div
+          className={`absolute inset-0 bg-cover bg-center transform transition-transform duration-[1200ms] ease-out ${isMounted ? 'scale-100' : 'scale-110'}`}
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative h-full flex items-center justify-center">
+          <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center transition-all duration-700 ease-out ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Resume Building
+            </h1>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              Create compelling resumes that get you noticed by top employers
+            </p>
+          </div>
         </div>
       </div>
 
@@ -80,12 +95,12 @@ const ResumeBuilding = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="bg-gradient-to-r from-orange-600 to-red-600 rounded-lg p-8 text-center text-white">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-8 text-center text-white">
           <h2 className="text-3xl font-bold mb-4">Ready to Build Your Perfect Resume?</h2>
           <p className="text-xl mb-6 opacity-90">
             Let our experts help you create a resume that stands out and gets you the job you want.
           </p>
-          <button className="bg-white text-orange-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition duration-300">
+          <button className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition duration-300">
             Start Building Your Resume
           </button>
         </div>

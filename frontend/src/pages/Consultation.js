@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import heroImage from '../assets/images/hero/hero.jpg';
 
 const Consultation = () => {
   const [formData, setFormData] = useState({
@@ -72,16 +73,22 @@ const Consultation = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Free Consultation
-          </h1>
-          <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            Get expert advice and strategic guidance to transform your business. 
-            Schedule your free consultation today.
-          </p>
+      {/* Hero Section with Background Image */}
+      <div className="relative h-[260px] md:h-[360px] overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative h-full flex items-center justify-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              Free Consultation
+            </h1>
+            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+              Get expert advice and strategic guidance to transform your business. Schedule your free consultation today.
+            </p>
+          </div>
         </div>
       </div>
 

@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isJobsDropdownOpen, setIsJobsDropdownOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -18,7 +26,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50">
+    <header className={`${scrolled ? 'bg-white/90 shadow-md' : 'bg-white/70 shadow-sm'} backdrop-blur-md sticky top-0 z-50 transition-all duration-300`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
@@ -35,15 +43,16 @@ const Header = () => {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="/" className="text-gray-700 hover:text-blue-600 font-medium transition duration-300">
+            <a href="/" className="group relative text-gray-700 font-medium transition-all duration-300 hover:text-blue-600">
               Home
+              <span className="pointer-events-none absolute left-0 -bottom-1 h-0.5 w-full scale-x-0 bg-blue-600 transform origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
             </a>
             
             {/* Services Dropdown */}
             <div className="relative">
               <button
                 onClick={toggleServicesDropdown}
-                className="text-gray-700 hover:text-blue-600 font-medium transition duration-300 flex items-center space-x-1"
+                className="group text-gray-700 hover:text-blue-600 font-medium transition duration-300 flex items-center space-x-1"
               >
                 <span>Services</span>
                 <svg 
@@ -93,11 +102,13 @@ const Header = () => {
               )}
             </div>
             
-            <a href="/about" className="text-gray-700 hover:text-blue-600 font-medium transition duration-300">
+            <a href="/about" className="group relative text-gray-700 font-medium transition-all duration-300 hover:text-blue-600">
               About Us
+              <span className="pointer-events-none absolute left-0 -bottom-1 h-0.5 w-full scale-x-0 bg-blue-600 transform origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
             </a>
-            <a href="/portfolio" className="text-gray-700 hover:text-blue-600 font-medium transition duration-300">
+            <a href="/portfolio" className="group relative text-gray-700 font-medium transition-all duration-300 hover:text-blue-600">
               Portfolio
+              <span className="pointer-events-none absolute left-0 -bottom-1 h-0.5 w-full scale-x-0 bg-blue-600 transform origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
             </a>
             
             {/* Jobs Dropdown */}
@@ -136,14 +147,15 @@ const Header = () => {
               )}
             </div>
             
-            <a href="/contact" className="text-gray-700 hover:text-blue-600 font-medium transition duration-300">
+            <a href="/contact" className="group relative text-gray-700 font-medium transition-all duration-300 hover:text-blue-600">
               Contact
+              <span className="pointer-events-none absolute left-0 -bottom-1 h-0.5 w-full scale-x-0 bg-blue-600 transform origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
             </a>
           </nav>
           
               {/* CTA Button */}
               <div className="hidden md:block">
-                <a href="/consultation" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg transition duration-300 transform hover:scale-105 inline-block">
+                <a href="/consultation" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg transition duration-300 transform hover:scale-105 inline-block shadow-sm">
                   Get Consultation
                 </a>
               </div>
@@ -151,7 +163,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none"
+            className="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none transition-transform duration-300"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMenuOpen ? (
