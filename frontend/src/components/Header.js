@@ -36,8 +36,9 @@ const Header = () => {
                 <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
               </svg>
             </div>
-            <h1 className="text-xl font-bold text-gray-900">
-              Siddhivinayak Consultants
+            <h1 className="text-lg sm:text-xl font-bold text-gray-900">
+              <span className="hidden sm:inline">Siddhivinayak Consultants</span>
+              <span className="sm:hidden">SVC</span>
             </h1>
           </div>
           

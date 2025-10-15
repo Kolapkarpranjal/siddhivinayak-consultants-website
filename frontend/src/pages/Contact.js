@@ -36,22 +36,22 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
           {/* Decorative left panel with concentric rings */}
-          <div className="relative overflow-hidden rounded-2xl bg-white shadow-md p-6 min-h-[520px]">
-            {/* Concentric dashed rings */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-gray-200 w-[520px] h-[520px] animate-spin" style={{animationDuration:'50s'}} />
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-gray-200 w-[420px] h-[420px]" />
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-gray-200 w-[320px] h-[320px] animate-spin" style={{animationDuration:'35s'}} />
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-gray-200 w-[220px] h-[220px]" />
+          <div className="relative overflow-hidden rounded-2xl bg-white shadow-md p-4 sm:p-6 min-h-[400px] sm:min-h-[520px]">
+            {/* Concentric dashed rings - Hidden on mobile */}
+            <div className="hidden sm:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-gray-200 w-[520px] h-[520px] animate-spin" style={{animationDuration:'50s'}} />
+            <div className="hidden sm:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-gray-200 w-[420px] h-[420px]" />
+            <div className="hidden sm:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-gray-200 w-[320px] h-[320px] animate-spin" style={{animationDuration:'35s'}} />
+            <div className="hidden sm:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-gray-200 w-[220px] h-[220px]" />
 
-            {/* Orbiting avatars */}
+            {/* Orbiting avatars - Hidden on mobile */}
             {avatars.map((src, i) => {
               const angle = (i / avatars.length) * 360;
               const radius = 210 + (i % 2 === 0 ? 0 : -60);
               const transform = `rotate(${angle}deg) translate(${radius}px) rotate(-${angle}deg)`;
               return (
-                <div key={i} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ transform }}>
+                <div key={i} className="hidden sm:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ transform }}>
                   <img src={src} alt="avatar" className="w-10 h-10 rounded-full ring-2 ring-white shadow-md" />
                 </div>
               );

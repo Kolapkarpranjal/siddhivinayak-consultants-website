@@ -199,7 +199,7 @@ const Home = () => {
           </div>
           
           {/* Dynamic Main Title */}
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             {slides[currentSlide].title.split(' ').map((word, index) => (
               index === slides[currentSlide].title.split(' ').length - 1 ? (
                 <span key={index} className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
@@ -212,7 +212,7 @@ const Home = () => {
           </h1>
           
           {/* Dynamic Subtitle */}
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed px-4">
             {slides[currentSlide].subtitle}
           </p>
           
@@ -274,49 +274,49 @@ const Home = () => {
             </p>
           </div>
           {/* Statistics Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-8">
             {/* Years of Market Leadership */}
             <div className="text-center">
-              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-3xl font-bold text-white">50+</span>
+              <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-lg sm:text-3xl font-bold text-white">50+</span>
               </div>
-              <p className="text-gray-900 font-medium text-center">
+              <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
                 Years of market leadership
               </p>
             </div>
             {/* Careers Built */}
             <div className="text-center">
-              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-3xl font-bold text-white">200k+</span>
+              <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-lg sm:text-3xl font-bold text-white">200k+</span>
               </div>
-              <p className="text-gray-900 font-medium text-center">
+              <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
                 Careers built to date
               </p>
             </div>
             {/* Consultants Pan India */}
             <div className="text-center">
-              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-3xl font-bold text-white">150+</span>
+              <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-lg sm:text-3xl font-bold text-white">150+</span>
               </div>
-              <p className="text-gray-900 font-medium text-center">
+              <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
                 Consultants pan India
               </p>
             </div>
             {/* Industry Specializations */}
             <div className="text-center">
-              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-3xl font-bold text-white">21</span>
+              <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-lg sm:text-3xl font-bold text-white">21</span>
               </div>
-              <p className="text-gray-900 font-medium text-center">
+              <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
                 Industry specialisations
               </p>
             </div>
             {/* Offices Across India */}
             <div className="text-center">
-              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-3xl font-bold text-white">8</span>
+              <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-lg sm:text-3xl font-bold text-white">8</span>
               </div>
-              <p className="text-gray-900 font-medium text-center">
+              <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
                 Offices across India
               </p>
             </div>
@@ -355,14 +355,14 @@ const Home = () => {
           
           {/* Timeline */}
           <div className="relative">
-            {/* Vertical Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-600"></div>
+            {/* Vertical Timeline Line - Hidden on mobile */}
+            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-600"></div>
             
             {/* Timeline Events */}
-            <div className="space-y-16">
-              {/* Event 1 - Foundation (Left) */}
-              <div className="flex items-center">
-                <div className="w-1/2 pr-8 text-right">
+            <div className="space-y-8 md:space-y-16">
+              {/* Event 1 - Foundation */}
+              <div className="flex flex-col md:flex-row items-center">
+                <div className="w-full md:w-1/2 md:pr-8 md:text-right">
                   <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-600">
                     <div className="text-blue-600 font-bold text-lg mb-2">1969</div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">Foundation</h3>
@@ -371,20 +371,20 @@ const Home = () => {
                     </p>
                   </div>
                 </div>
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
+                <div className="hidden md:block w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
                   <div className="w-4 h-4 bg-white rounded-full"></div>
                 </div>
-                <div className="w-1/2 pl-8"></div>
+                <div className="w-full md:w-1/2 md:pl-8"></div>
               </div>
               
-              {/* Event 2 - Expansion (Right) */}
-              <div className="flex items-center">
-                <div className="w-1/2 pr-8"></div>
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
+              {/* Event 2 - Expansion */}
+              <div className="flex flex-col md:flex-row items-center">
+                <div className="w-full md:w-1/2 md:pr-8"></div>
+                <div className="hidden md:block w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
                   <div className="w-4 h-4 bg-white rounded-full"></div>
                 </div>
-                <div className="w-1/2 pl-8">
-                  <div className="bg-white rounded-lg shadow-lg p-6 border-r-4 border-blue-600">
+                <div className="w-full md:w-1/2 md:pl-8">
+                  <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 md:border-r-4 border-blue-600">
                     <div className="text-blue-600 font-bold text-lg mb-2">1970s & 1980s</div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">Expansion</h3>
                     <p className="text-gray-700 leading-relaxed">
@@ -394,9 +394,9 @@ const Home = () => {
                 </div>
               </div>
               
-              {/* Event 3 - Digital Transformation (Left) */}
-              <div className="flex items-center">
-                <div className="w-1/2 pr-8 text-right">
+              {/* Event 3 - Digital Transformation */}
+              <div className="flex flex-col md:flex-row items-center">
+                <div className="w-full md:w-1/2 md:pr-8 md:text-right">
                   <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-600">
                     <div className="text-blue-600 font-bold text-lg mb-2">1990s</div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">Digital Transformation</h3>
@@ -405,20 +405,20 @@ const Home = () => {
                     </p>
                   </div>
                 </div>
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
+                <div className="hidden md:block w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
                   <div className="w-4 h-4 bg-white rounded-full"></div>
                 </div>
-                <div className="w-1/2 pl-8"></div>
+                <div className="w-full md:w-1/2 md:pl-8"></div>
               </div>
               
-              {/* Event 4 - Global Recognition (Right) */}
-              <div className="flex items-center">
-                <div className="w-1/2 pr-8"></div>
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
+              {/* Event 4 - Global Recognition */}
+              <div className="flex flex-col md:flex-row items-center">
+                <div className="w-full md:w-1/2 md:pr-8"></div>
+                <div className="hidden md:block w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
                   <div className="w-4 h-4 bg-white rounded-full"></div>
                 </div>
-                <div className="w-1/2 pl-8">
-                  <div className="bg-white rounded-lg shadow-lg p-6 border-r-4 border-blue-600">
+                <div className="w-full md:w-1/2 md:pl-8">
+                  <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 md:border-r-4 border-blue-600">
                     <div className="text-blue-600 font-bold text-lg mb-2">2000s</div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">Global Recognition</h3>
                     <p className="text-gray-700 leading-relaxed">
@@ -428,9 +428,9 @@ const Home = () => {
                 </div>
               </div>
               
-              {/* Event 5 - Innovation & Growth (Left) */}
-              <div className="flex items-center">
-                <div className="w-1/2 pr-8 text-right">
+              {/* Event 5 - Innovation & Growth */}
+              <div className="flex flex-col md:flex-row items-center">
+                <div className="w-full md:w-1/2 md:pr-8 md:text-right">
                   <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-600">
                     <div className="text-blue-600 font-bold text-lg mb-2">2010s</div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">Innovation & Growth</h3>
@@ -439,20 +439,20 @@ const Home = () => {
                     </p>
                   </div>
                 </div>
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
+                <div className="hidden md:block w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
                   <div className="w-4 h-4 bg-white rounded-full"></div>
                 </div>
-                <div className="w-1/2 pl-8"></div>
+                <div className="w-full md:w-1/2 md:pl-8"></div>
               </div>
               
-              {/* Event 6 - Present Day (Right) */}
-              <div className="flex items-center">
-                <div className="w-1/2 pr-8"></div>
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
+              {/* Event 6 - Present Day */}
+              <div className="flex flex-col md:flex-row items-center">
+                <div className="w-full md:w-1/2 md:pr-8"></div>
+                <div className="hidden md:block w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
                   <div className="w-4 h-4 bg-white rounded-full"></div>
                 </div>
-                <div className="w-1/2 pl-8">
-                  <div className="bg-white rounded-lg shadow-lg p-6 border-r-4 border-blue-600">
+                <div className="w-full md:w-1/2 md:pl-8">
+                  <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 md:border-r-4 border-blue-600">
                     <div className="text-blue-600 font-bold text-lg mb-2">Present</div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">Leading the Future</h3>
                     <p className="text-gray-700 leading-relaxed">
@@ -500,7 +500,7 @@ const Home = () => {
             </button>
             
             {/* Industry Icons */}
-            <div className="flex justify-center items-center space-x-8 overflow-hidden">
+            <div className="flex justify-center items-center space-x-4 sm:space-x-8 overflow-hidden">
               {industries.map((industry, index) => (
                 <div 
                   key={index}
@@ -510,12 +510,12 @@ const Home = () => {
                 >
                   <div className={`${
                     index === currentIndustry 
-                      ? 'w-20 h-20 bg-blue-100 border-4 border-blue-500' 
-                      : 'w-16 h-16 bg-gray-200'
+                      ? 'w-16 h-16 sm:w-20 sm:h-20 bg-blue-100 border-4 border-blue-500' 
+                      : 'w-12 h-12 sm:w-16 sm:h-16 bg-gray-200'
                   } rounded-full flex items-center justify-center mb-3 transition-all duration-300`}>
                     <svg 
                       className={`${
-                        index === currentIndustry ? 'w-10 h-10 text-blue-600' : 'w-8 h-8 text-gray-500'
+                        index === currentIndustry ? 'w-8 h-8 sm:w-10 sm:h-10 text-blue-600' : 'w-6 h-6 sm:w-8 sm:h-8 text-gray-500'
                       }`} 
                       fill={index === currentIndustry ? "none" : "currentColor"} 
                       stroke="currentColor" 
@@ -531,8 +531,8 @@ const Home = () => {
                   </div>
                   <span className={`${
                     index === currentIndustry 
-                      ? 'text-gray-900 font-medium' 
-                      : 'text-gray-500 text-sm'
+                      ? 'text-gray-900 font-medium text-xs sm:text-base' 
+                      : 'text-gray-500 text-xs sm:text-sm'
                   } transition-all duration-300`}>
                     {industry.name}
                   </span>
@@ -577,22 +577,22 @@ const Home = () => {
             </button>
             
             {/* Services Cards */}
-            <div className="overflow-hidden px-8">
+            <div className="overflow-hidden px-4 sm:px-8">
               <div 
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ 
-                  transform: `translateX(-${currentService * 33.333}%)`,
-                  width: `${services.length * 33.333}%`
+                  transform: `translateX(-${currentService * (window.innerWidth < 640 ? 100 : 33.333)}%)`,
+                  width: `${services.length * (window.innerWidth < 640 ? 100 : 33.333)}%`
                 }}
               >
                 {services.map((service, index) => (
                   <div 
                     key={index}
-                    className="flex-shrink-0 w-1/3 px-2"
+                    className="flex-shrink-0 w-full sm:w-1/3 px-2"
                   >
                     <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
                       {/* Service Image */}
-                      <div className="h-40 overflow-hidden">
+                      <div className="h-32 sm:h-40 overflow-hidden">
                         <img 
                           src={service.image} 
                           alt={service.title}
@@ -601,17 +601,17 @@ const Home = () => {
                       </div>
                       
                       {/* Service Content */}
-                      <div className="p-4">
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">
+                      <div className="p-3 sm:p-4">
+                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">
                           {service.title}
                         </h3>
-                        <p className="text-gray-600 mb-3 leading-relaxed text-sm">
+                        <p className="text-gray-600 mb-3 leading-relaxed text-xs sm:text-sm">
                           {service.description}
                         </p>
                         
                         {/* Action Button */}
-                        <button onClick={() => navigate(`/services/${slugify(service.title)}`)} className="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110">
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <button onClick={() => navigate(`/services/${slugify(service.title)}`)} className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110">
+                          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </button>
