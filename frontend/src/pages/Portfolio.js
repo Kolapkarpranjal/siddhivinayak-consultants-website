@@ -105,15 +105,15 @@ const Portfolio = () => {
                   </div>
                   {/* Right: Visual tile */}
                   <div className="relative rounded-lg overflow-hidden h-40 sm:h-full min-h-[160px]">
-                    <img
-                      src={project.image}
-                      alt={project.title}
+                <img 
+                  src={project.image} 
+                  alt={project.title}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+                />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-black/0" />
-                  </div>
                 </div>
-
+              </div>
+              
                 {/* Footer stats bar */}
                 <div className="mt-6 grid grid-cols-3 gap-4 text-center">
                   <div className="bg-gray-50 rounded-md p-3">
