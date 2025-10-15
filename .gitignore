@@ -71,7 +71,10 @@ dist
 
 # Gatsby files
 .cache/
+# Note: allow committing frontend/public so CRA index.html is tracked
 public
+!frontend/public/
+!frontend/public/index.html
 
 # Storybook build outputs
 .out
