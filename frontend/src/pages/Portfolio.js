@@ -47,10 +47,10 @@ const Portfolio = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-12">
+    <div className="min-h-screen bg-gray-50" data-aos="fade-up">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" data-aos="fade-up">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Our Portfolio
           </h1>
@@ -59,46 +59,75 @@ const Portfolio = () => {
           </p>
         </div>
 
-        {/* Portfolio Grid */}
+        {/* Portfolio Grid - Modern slide-like cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            <div
+              key={index}
+              className="group bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+              data-aos="fade-up"
+              data-aos-delay={index * 150}
+            >
+              {/* Angled Header Band */}
+              <div className="relative h-24">
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-blue-700 to-cyan-600"
+                  style={{ clipPath: 'polygon(0 0, 85% 0, 100% 100%, 0 100%)' }}
                 />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                    {project.category}
-                  </span>
+                <div className="absolute inset-0 flex items-center justify-between px-5">
+                  <div className="text-white">
+                    <div className="uppercase tracking-wider text-xs opacity-90">{project.category}</div>
+                    <div className="font-bold text-lg leading-tight">{project.title}</div>
+                  </div>
+                  <div className="hidden md:flex items-center space-x-2 text-white/90">
+                    <span className="w-2 h-2 rounded-full bg-white/70" />
+                    <span className="w-2 h-2 rounded-full bg-white/70" />
+                    <span className="w-2 h-2 rounded-full bg-white/70" />
+                  </div>
                 </div>
               </div>
-              
-              {/* Project Content */}
+
+              {/* Body: two-column content like slide */}
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-                
-                {/* Results */}
-                <div className="space-y-2">
-                  <h4 className="font-semibold text-gray-800 text-sm">Key Results:</h4>
-                  <ul className="space-y-1">
-                    {project.results.map((result, resultIndex) => (
-                      <li key={resultIndex} className="flex items-center text-sm text-gray-600">
-                        <svg className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                        {result}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {/* Left: Description */}
+                  <div>
+                    <div className="text-sm text-gray-500 font-semibold mb-2">Executive Summary</div>
+                    <p className="text-gray-700 leading-relaxed mb-4">{project.description}</p>
+                    <div className="space-y-2">
+                      {project.results.slice(0, 3).map((point, i) => (
+                        <div key={i} className="flex items-start text-sm text-gray-700">
+                          <span className="mt-1 mr-2 w-2 h-2 rounded-full bg-blue-600 flex-shrink-0" />
+                          <span>{point}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Right: Visual tile */}
+                  <div className="relative rounded-lg overflow-hidden h-40 sm:h-full min-h-[160px]">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-black/0" />
+                  </div>
+                </div>
+
+                {/* Footer stats bar */}
+                <div className="mt-6 grid grid-cols-3 gap-4 text-center">
+                  <div className="bg-gray-50 rounded-md p-3">
+                    <div className="text-xs text-gray-500">Impact</div>
+                    <div className="font-semibold text-gray-900">High</div>
+                  </div>
+                  <div className="bg-gray-50 rounded-md p-3">
+                    <div className="text-xs text-gray-500">Timeline</div>
+                    <div className="font-semibold text-gray-900">12 wks</div>
+                  </div>
+                  <div className="bg-gray-50 rounded-md p-3">
+                    <div className="text-xs text-gray-500">ROI</div>
+                    <div className="font-semibold text-gray-900">2.5x</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -106,8 +135,8 @@ const Portfolio = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-8 text-white">
+        <div className="mt-16 text-center" data-aos="zoom-in">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-10 text-white shadow-xl">
             <h2 className="text-3xl font-bold mb-4">Ready to Start Your Success Story?</h2>
             <p className="text-xl mb-6 opacity-90">
               Let's discuss how we can help your business achieve similar results.

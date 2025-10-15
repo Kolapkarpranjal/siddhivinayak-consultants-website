@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -19,6 +21,9 @@ import InterviewPreparation from './pages/services/InterviewPreparation';
 import './App.css';
 
 function App() {
+  useEffect(() => {
+    AOS.init({ duration: 900, easing: 'ease-in-out', once: true, offset: 100 });
+  }, []);
   return (
     <Router>
       <div className="min-h-screen flex flex-col">

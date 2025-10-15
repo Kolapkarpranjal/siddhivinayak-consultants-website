@@ -72,7 +72,7 @@ const Consultation = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50" data-aos="fade-up">
       {/* Hero Section with Background Image */}
       <div className="relative h-[260px] md:h-[360px] overflow-hidden">
         <div

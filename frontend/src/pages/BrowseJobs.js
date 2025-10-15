@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import resumeHero from '../assets/images/hero/resume.webp';
 
 const BrowseJobs = () => {
+  const navigate = useNavigate();
   const [searchFilters, setSearchFilters] = useState({
     jobTitle: '',
     function: '',
@@ -97,7 +99,7 @@ const BrowseJobs = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50" data-aos="fade-up">
       {/* Breadcrumb */}
       <div className="bg-blue-600 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -131,7 +133,7 @@ const BrowseJobs = () => {
                 If you cannot find a relevant opportunity by browsing our jobs, please send us your details by clicking here.
               </p>
             </div>
-            <button className="bg-black hover:bg-gray-800 text-white font-semibold px-8 py-3 rounded-lg transition duration-300 flex items-center space-x-2">
+            <button onClick={() => navigate('/submit-cv')} className="bg-black hover:bg-gray-800 text-white font-semibold px-8 py-3 rounded-lg transition duration-300 flex items-center space-x-2">
               <span>Submit Your CV</span>
               <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
                 <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

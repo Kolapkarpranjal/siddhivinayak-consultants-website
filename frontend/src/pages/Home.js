@@ -264,64 +264,64 @@ const Home = () => {
       
       {/* Statistics Section */}
       <section ref={statsReveal.ref} className={`py-20 bg-white transition-all duration-700 ease-out ${statsReveal.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                  An integral part of corporate India's journey
-                </h2>
-                <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-                  Trusted advisors to multinationals, leading Indian businesses and leadership professionals
-                </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              An integral part of corporate India's journey
+            </h2>
+            <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+              Trusted advisors to multinationals, leading Indian businesses and leadership professionals
+            </p>
+          </div>
+          {/* Statistics Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+            {/* Years of Market Leadership */}
+            <div className="text-center">
+              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-3xl font-bold text-white">50+</span>
               </div>
-              {/* Statistics Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-                {/* Years of Market Leadership */}
-                <div className="text-center">
-                  <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <span className="text-3xl font-bold text-white">50+</span>
-                  </div>
-                  <p className="text-gray-900 font-medium text-center">
-                    Years of market leadership
-                  </p>
-                </div>
-                {/* Careers Built */}
-                <div className="text-center">
-                  <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <span className="text-3xl font-bold text-white">200k+</span>
-                  </div>
-                  <p className="text-gray-900 font-medium text-center">
-                    Careers built to date
-                  </p>
-                </div>
-                {/* Consultants Pan India */}
-                <div className="text-center">
-                  <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <span className="text-3xl font-bold text-white">150+</span>
-                  </div>
-                  <p className="text-gray-900 font-medium text-center">
-                    Consultants pan India
-                  </p>
-                </div>
-                {/* Industry Specializations */}
-                <div className="text-center">
-                  <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <span className="text-3xl font-bold text-white">21</span>
-                  </div>
-                  <p className="text-gray-900 font-medium text-center">
-                    Industry specialisations
-                  </p>
-                </div>
-                {/* Offices Across India */}
-                <div className="text-center">
-                  <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <span className="text-3xl font-bold text-white">8</span>
-                  </div>
-                  <p className="text-gray-900 font-medium text-center">
-                    Offices across India
-                  </p>
-                </div>
-              </div>
+              <p className="text-gray-900 font-medium text-center">
+                Years of market leadership
+              </p>
             </div>
+            {/* Careers Built */}
+            <div className="text-center">
+              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-3xl font-bold text-white">200k+</span>
+              </div>
+              <p className="text-gray-900 font-medium text-center">
+                Careers built to date
+              </p>
+            </div>
+            {/* Consultants Pan India */}
+            <div className="text-center">
+              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-3xl font-bold text-white">150+</span>
+              </div>
+              <p className="text-gray-900 font-medium text-center">
+                Consultants pan India
+              </p>
+            </div>
+            {/* Industry Specializations */}
+            <div className="text-center">
+              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-3xl font-bold text-white">21</span>
+              </div>
+              <p className="text-gray-900 font-medium text-center">
+                Industry specialisations
+              </p>
+            </div>
+            {/* Offices Across India */}
+            <div className="text-center">
+              <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-3xl font-bold text-white">8</span>
+              </div>
+              <p className="text-gray-900 font-medium text-center">
+                Offices across India
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
       
       {/* Our People Section */}
@@ -659,8 +659,8 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Testimonial Card 1 */}
-            <div className="rounded-2xl border-8 border-blue-100">
-              <div className="relative bg-white rounded-xl p-8">
+            <div className="rounded-2xl border-8 border-blue-100 transition-transform duration-300 hover:-translate-y-1 hover:border-blue-200">
+              <div className="relative bg-white rounded-xl p-8 shadow-md transition-shadow duration-300 hover:shadow-2xl">
                 <div className="absolute top-4 right-4 text-blue-200">
                   <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h4a4 4 0 010 8H7V8zm10 0h-4a4 4 0 000 8h4V8z" />
@@ -684,8 +684,8 @@ const Home = () => {
             </div>
 
             {/* Testimonial Card 2 */}
-            <div className="rounded-2xl border-8 border-blue-100">
-              <div className="relative bg-white rounded-xl p-8">
+            <div className="rounded-2xl border-8 border-blue-100 transition-transform duration-300 hover:-translate-y-1 hover:border-blue-200">
+              <div className="relative bg-white rounded-xl p-8 shadow-md transition-shadow duration-300 hover:shadow-2xl">
                 <div className="absolute top-4 right-4 text-blue-200">
                   <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h4a4 4 0 010 8H7V8zm10 0h-4a4 4 0 000 8h4V8z" />
@@ -710,7 +710,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-
+      
       {/* Additional Content Sections */}
       <section className="py-20 bg-white">
         <div ref={whyReveal.ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out ${whyReveal.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
