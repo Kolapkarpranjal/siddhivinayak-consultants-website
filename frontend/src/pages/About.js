@@ -92,9 +92,35 @@ const About = () => {
             </p>
           </div>
 
-          {/* Circular Journey Chart */}
-          <div className="flex justify-center" data-aos="zoom-in">
-            <div className="relative w-[320px] h-[320px] md:w-[480px] md:h-[480px]">
+          {/* Mobile Journey Timeline */}
+          <div className="md:hidden" data-aos="fade-up">
+            <div className="space-y-8">
+              {journeyMilestones.map((milestone, index) => (
+                <div key={index} className="flex items-start space-x-4" data-aos="fade-up" data-aos-delay={index * 100}>
+                  <div className="flex-shrink-0">
+                    <div className="relative">
+                      <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg">
+                        <span className="text-sm font-bold">{milestone.year}</span>
+                      </div>
+                      {index < journeyMilestones.length - 1 && (
+                        <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-blue-200"></div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="bg-white rounded-lg shadow-md border border-gray-100 p-4">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{milestone.title}</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">{milestone.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Circular Journey Chart */}
+          <div className="hidden md:flex justify-center" data-aos="zoom-in">
+            <div className="relative w-[480px] h-[480px]">
               {/* Outer ring (slow rotation) */}
               <div className="absolute inset-0 rounded-full border-8 border-blue-100 animate-spin" style={{ animationDuration: '20s' }} />
               {/* Inner ring (counter-feel via different speed) */}
@@ -102,10 +128,10 @@ const About = () => {
 
               {/* Center badge (clean, no company name) */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 shadow-xl flex items-center justify-center">
+                <div className="w-36 h-36 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 shadow-xl flex items-center justify-center">
                   <div className="text-center text-white">
-                    <div className="text-[10px] md:text-xs uppercase tracking-widest opacity-90">Journey</div>
-                    <svg className="mx-auto mt-1 w-6 h-6 md:w-7 md:h-7 opacity-95" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="text-xs uppercase tracking-widest opacity-90">Journey</div>
+                    <svg className="mx-auto mt-1 w-7 h-7 opacity-95" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
@@ -115,9 +141,8 @@ const About = () => {
               {journeyMilestones.map((m, idx) => {
                 const total = journeyMilestones.length;
                 const angle = (idx / total) * 360; // degrees
-                const radius = 150; // px base, adjusted below via CSS scale
-                const r = typeof window !== 'undefined' && window.innerWidth >= 768 ? 200 : radius;
-                const transform = `rotate(${angle}deg) translate(${r}px) rotate(-${angle}deg)`;
+                const radius = 200; // px for desktop
+                const transform = `rotate(${angle}deg) translate(${radius}px) rotate(-${angle}deg)`;
                 const delay = idx * 120;
                 return (
                   <div
@@ -128,9 +153,9 @@ const About = () => {
                     data-aos-delay={delay}
                   >
                     <div className="flex flex-col items-center w-44 -mt-4">
-                      <span className="relative mb-2 inline-flex items-center justify-center w-9 h-9 md:w-10 md:h-10">
+                      <span className="relative mb-2 inline-flex items-center justify-center w-10 h-10">
                         <span className="absolute inline-flex w-full h-full rounded-full bg-blue-400 opacity-30 animate-ping"></span>
-                        <span className="relative inline-flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-blue-600 text-white text-[10px] md:text-xs font-semibold shadow-md ring-4 ring-white">
+                        <span className="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white text-xs font-semibold shadow-md ring-4 ring-white">
                           {m.year}
                         </span>
                       </span>

@@ -35,6 +35,14 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentIndustry, setCurrentIndustry] = useState(0);
   const [currentService, setCurrentService] = useState(0);
+  const [animatedStats, setAnimatedStats] = useState({
+    years: 0,
+    careers: 0,
+    consultants: 0,
+    industries: 0,
+    offices: 0
+  });
+  const [hasAnimated, setHasAnimated] = useState(false);
   const statsReveal = useReveal();
   const journeyReveal = useReveal();
   const industryReveal = useReveal();
@@ -109,6 +117,45 @@ const Home = () => {
     return () => clearInterval(timer);
   }, [slides.length]);
 
+  // Statistics animation effect
+  useEffect(() => {
+    if (statsReveal.isVisible && !hasAnimated) {
+      setHasAnimated(true);
+      
+      const animateValue = (key, targetValue, duration = 2000) => {
+        const startTime = Date.now();
+        const startValue = 0;
+        
+        const animate = () => {
+          const elapsed = Date.now() - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          
+          // Easing function for smooth animation
+          const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+          const currentValue = Math.floor(startValue + (targetValue - startValue) * easeOutQuart);
+          
+          setAnimatedStats(prev => ({
+            ...prev,
+            [key]: currentValue
+          }));
+          
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          }
+        };
+        
+        requestAnimationFrame(animate);
+      };
+
+      // Animate each statistic with slight delays for staggered effect
+      setTimeout(() => animateValue('years', 50), 100);
+      setTimeout(() => animateValue('careers', 200), 200);
+      setTimeout(() => animateValue('consultants', 150), 300);
+      setTimeout(() => animateValue('industries', 21), 400);
+      setTimeout(() => animateValue('offices', 8), 500);
+    }
+  }, [statsReveal.isVisible, hasAnimated]);
+
   const nextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
   };
@@ -169,24 +216,6 @@ const Home = () => {
           <div className="absolute inset-0 bg-black/50" />
         </div>
         
-        {/* Navigation Arrows */}
-        <button 
-          onClick={prevSlide}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition duration-300"
-        >
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        
-        <button 
-          onClick={nextSlide}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition duration-300"
-        >
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
         
         {/* Hero Content */}
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
@@ -278,7 +307,7 @@ const Home = () => {
             {/* Years of Market Leadership */}
             <div className="text-center">
               <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-lg sm:text-3xl font-bold text-white">50+</span>
+                <span className="text-lg sm:text-3xl font-bold text-white">{animatedStats.years}+</span>
               </div>
               <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
                 Years of market leadership
@@ -287,7 +316,7 @@ const Home = () => {
             {/* Careers Built */}
             <div className="text-center">
               <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-lg sm:text-3xl font-bold text-white">200k+</span>
+                <span className="text-lg sm:text-3xl font-bold text-white">{animatedStats.careers}k+</span>
               </div>
               <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
                 Careers built to date
@@ -296,7 +325,7 @@ const Home = () => {
             {/* Consultants Pan India */}
             <div className="text-center">
               <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-lg sm:text-3xl font-bold text-white">150+</span>
+                <span className="text-lg sm:text-3xl font-bold text-white">{animatedStats.consultants}+</span>
               </div>
               <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
                 Consultants pan India
@@ -305,7 +334,7 @@ const Home = () => {
             {/* Industry Specializations */}
             <div className="text-center">
               <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-lg sm:text-3xl font-bold text-white">21</span>
+                <span className="text-lg sm:text-3xl font-bold text-white">{animatedStats.industries}</span>
               </div>
               <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
                 Industry specialisations
@@ -314,7 +343,7 @@ const Home = () => {
             {/* Offices Across India */}
             <div className="text-center">
               <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-lg sm:text-3xl font-bold text-white">8</span>
+                <span className="text-lg sm:text-3xl font-bold text-white">{animatedStats.offices}</span>
               </div>
               <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
                 Offices across India
