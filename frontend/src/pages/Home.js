@@ -378,118 +378,94 @@ const Home = () => {
               Our Journey
             </h2>
             <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-              From one office in Kolkata to a network of offices pan India, take a look at our fascinating journey in the last five decades
+              Working since 2013 for all type industries. Provides recruitment solutions. We are committed to work ethically with deep understanding of our Client Needs on Time.
             </p>
           </div>
-          
+
           {/* Timeline */}
-          <div className="relative">
-            {/* Vertical Timeline Line - Hidden on mobile */}
-            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-600"></div>
+          <div className="relative max-w-5xl mx-auto pb-8">
+            {/* Vertical Timeline Line - Thick and Centered */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1.5 bg-blue-600 h-full hidden md:block" style={{ top: '1rem', bottom: '1rem' }}></div>
             
-            {/* Timeline Events */}
-            <div className="space-y-8 md:space-y-16">
-              {/* Event 1 - Foundation */}
-              <div className="flex flex-col md:flex-row items-center">
-                <div className="w-full md:w-1/2 md:pr-8 md:text-right">
-                  <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-600">
-                    <div className="text-blue-600 font-bold text-lg mb-2">1969</div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">Foundation</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      Dr. Bish Agrawal establishes Siddhivinayak Consultants as a Consulting services firm in Kolkata.
-                    </p>
+            {/* Timeline Items */}
+            <div className="space-y-10 md:space-y-12">
+              {[
+                {
+                  year: "2013",
+                  city: "Nasik",
+                  description: "Started operations in Nasik, providing recruitment solutions for all types of industries.",
+                  position: "left"
+                },
+                {
+                  year: "2014",
+                  city: "Sinnar",
+                  description: "Expanded to Sinnar, establishing strong presence in the industrial zone.",
+                  position: "right"
+                },
+                {
+                  year: "2015",
+                  city: "Ahilya Nagar",
+                  description: "Extended services to Ahilya Nagar, serving diverse industrial sectors.",
+                  position: "left"
+                },
+                {
+                  year: "2016",
+                  city: "Sambhaji Nagar",
+                  description: "Opened operations in Sambhaji Nagar, strengthening regional coverage.",
+                  position: "right"
+                },
+                {
+                  year: "2017-2019",
+                  city: "Pune",
+                  description: "Established presence in Pune Industrial Zone, serving major manufacturing and IT sectors.",
+                  position: "left"
+                },
+                {
+                  year: "2020-2025",
+                  city: "Mumbai",
+                  description: "Expanded to Mumbai Industrial Zone, becoming a trusted recruitment partner across Maharashtra.",
+                  position: "right"
+                }
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className={`relative flex items-center ${
+                    item.position === "left" 
+                      ? "md:flex-row" 
+                      : "md:flex-row-reverse"
+                  }`}
+                >
+                  {/* Timeline Card */}
+                  <div className={`w-full md:w-[45%] ${
+                    item.position === "left" ? "md:pr-10" : "md:pl-10"
+                  }`}>
+                    <div className="bg-white shadow-lg p-5 md:p-6 rounded-lg">
+                      <div className="text-blue-600 text-xl md:text-2xl font-bold mb-2">
+                        {item.year}
+                      </div>
+                      <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
+                        {item.city}
+                      </h3>
+                      <p className="text-gray-700 leading-relaxed text-sm md:text-base">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Timeline Node (Desktop) - Centered Blue Dot */}
+                  <div className="hidden md:flex items-center justify-center w-[10%] relative z-10">
+                    <div className="w-6 h-6 bg-blue-600 rounded-full shadow-md"></div>
+                  </div>
+
+                  {/* Spacer for mobile */}
+                  <div className="md:hidden w-full"></div>
+
+                  {/* Timeline Node (Mobile) */}
+                  <div className="md:hidden absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2 z-10">
+                    <div className="w-6 h-6 bg-blue-600 rounded-full shadow-md"></div>
                   </div>
                 </div>
-                <div className="hidden md:block w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
-                  <div className="w-4 h-4 bg-white rounded-full"></div>
-                </div>
-                <div className="w-full md:w-1/2 md:pl-8"></div>
-              </div>
-              
-              {/* Event 2 - Expansion */}
-              <div className="flex flex-col md:flex-row items-center">
-                <div className="w-full md:w-1/2 md:pr-8"></div>
-                <div className="hidden md:block w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
-                  <div className="w-4 h-4 bg-white rounded-full"></div>
-                </div>
-                <div className="w-full md:w-1/2 md:pl-8">
-                  <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 md:border-r-4 border-blue-600">
-                    <div className="text-blue-600 font-bold text-lg mb-2">1970s & 1980s</div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">Expansion</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      Siddhivinayak opens offices in all major cities across India. Rapidly becomes a trusted name in executive search and talent advisory.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Event 3 - Digital Transformation */}
-              <div className="flex flex-col md:flex-row items-center">
-                <div className="w-full md:w-1/2 md:pr-8 md:text-right">
-                  <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-600">
-                    <div className="text-blue-600 font-bold text-lg mb-2">1990s</div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">Digital Transformation</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      Pioneered the use of technology in recruitment processes, setting new industry standards for efficiency and accuracy.
-                    </p>
-                  </div>
-                </div>
-                <div className="hidden md:block w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
-                  <div className="w-4 h-4 bg-white rounded-full"></div>
-                </div>
-                <div className="w-full md:w-1/2 md:pl-8"></div>
-              </div>
-              
-              {/* Event 4 - Global Recognition */}
-              <div className="flex flex-col md:flex-row items-center">
-                <div className="w-full md:w-1/2 md:pr-8"></div>
-                <div className="hidden md:block w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
-                  <div className="w-4 h-4 bg-white rounded-full"></div>
-                </div>
-                <div className="w-full md:w-1/2 md:pl-8">
-                  <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 md:border-r-4 border-blue-600">
-                    <div className="text-blue-600 font-bold text-lg mb-2">2000s</div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">Global Recognition</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      Expanded services internationally and received recognition as one of India's leading executive search firms.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Event 5 - Innovation & Growth */}
-              <div className="flex flex-col md:flex-row items-center">
-                <div className="w-full md:w-1/2 md:pr-8 md:text-right">
-                  <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-600">
-                    <div className="text-blue-600 font-bold text-lg mb-2">2010s</div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">Innovation & Growth</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      Launched innovative training programs and resume building services, becoming a comprehensive talent solutions provider.
-                    </p>
-                  </div>
-                </div>
-                <div className="hidden md:block w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
-                  <div className="w-4 h-4 bg-white rounded-full"></div>
-                </div>
-                <div className="w-full md:w-1/2 md:pl-8"></div>
-              </div>
-              
-              {/* Event 6 - Present Day */}
-              <div className="flex flex-col md:flex-row items-center">
-                <div className="w-full md:w-1/2 md:pr-8"></div>
-                <div className="hidden md:block w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center relative z-10">
-                  <div className="w-4 h-4 bg-white rounded-full"></div>
-                </div>
-                <div className="w-full md:w-1/2 md:pl-8">
-                  <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 md:border-r-4 border-blue-600">
-                    <div className="text-blue-600 font-bold text-lg mb-2">Present</div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">Leading the Future</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      Continuing to lead the industry with 8 offices across India, 150+ consultants, and over 200,000 successful placements.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -686,8 +662,8 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Testimonial Card 1 */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Testimonial Card 1 - Ashutosh Sharma */}
             <div className="rounded-2xl border-8 border-blue-100 transition-transform duration-300 hover:-translate-y-1 hover:border-blue-200">
               <div className="relative bg-white rounded-xl p-8 shadow-md transition-shadow duration-300 hover:shadow-2xl">
                 <div className="absolute top-4 right-4 text-blue-200">
@@ -701,18 +677,17 @@ const Home = () => {
                   </div>
                   <div className="text-blue-700 font-semibold">Client Testimonial</div>
                 </div>
-                <p className="text-gray-700 leading-relaxed">
-                  We are happy to recommend Siddhivinayak Consultants for their exceptional business partnering.
-                  They demonstrated remarkable dedication and expertise in managing our leadership mandates.
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  We are associated with Siddhivinayak Employment services since 7 Years and the quality of the candidates that they have provided has been very good and the kind of quality process and everything during recruitment process and selection process has been very good with them. I really Recommend that we should really work with this people and my best wishes to them.
                 </p>
-                <div className="mt-6 text-sm text-gray-500">
-                  <div className="font-semibold text-gray-700">Samuel Joseph Jebaraj</div>
-                  <div>Deputy Managing Director, BFSI</div>
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <div className="font-semibold text-gray-900">Ashutosh Sharma</div>
+                  <div className="text-sm text-gray-600">Chief Administration Officer</div>
                 </div>
               </div>
             </div>
 
-            {/* Testimonial Card 2 */}
+            {/* Testimonial Card 2 - Rahul Shukla */}
             <div className="rounded-2xl border-8 border-blue-100 transition-transform duration-300 hover:-translate-y-1 hover:border-blue-200">
               <div className="relative bg-white rounded-xl p-8 shadow-md transition-shadow duration-300 hover:shadow-2xl">
                 <div className="absolute top-4 right-4 text-blue-200">
@@ -726,13 +701,36 @@ const Home = () => {
                   </div>
                   <div className="text-blue-700 font-semibold">Client Testimonial</div>
                 </div>
-                <p className="text-gray-700 leading-relaxed">
-                  The team supported us immensely in capability building initiatives through focused searches
-                  and quick turnaround, enabling the right selections.
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  We are working with SES from last 10 Years and what we have observed is that they are adding new strategies to their services and there is continues improvement.
                 </p>
-                <div className="mt-6 text-sm text-gray-500">
-                  <div className="font-semibold text-gray-700">Saba Adil</div>
-                  <div>CHRO, Edelweiss Life</div>
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <div className="font-semibold text-gray-900">Rahul Shukla</div>
+                  <div className="text-sm text-gray-600">HR Manager (Electronica Tungsten Limited)</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial Card 3 - Prabhakar Bodke */}
+            <div className="rounded-2xl border-8 border-blue-100 transition-transform duration-300 hover:-translate-y-1 hover:border-blue-200">
+              <div className="relative bg-white rounded-xl p-8 shadow-md transition-shadow duration-300 hover:shadow-2xl">
+                <div className="absolute top-4 right-4 text-blue-200">
+                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h4a4 4 0 010 8H7V8zm10 0h-4a4 4 0 000 8h4V8z" />
+                  </svg>
+                </div>
+                <div className="flex items-center mb-4">
+                  <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                    <svg className="w-8 h-8 text-blue-600" viewBox="0 0 20 20" fill="currentColor"><path d="M2 10a8 8 0 1116 0A8 8 0 012 10zm7-3a1 1 0 012 0v3a1 1 0 01-1 1H7a1 1 0 110-2h2V7z"/></svg>
+                  </div>
+                  <div className="text-blue-700 font-semibold">Client Testimonial</div>
+                </div>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  SES is one of the good and leading company, working with me and my organisation since 7 Years during this journey I realise that SES has good databank for all level of positions they are providing all skilful and experience candidates. They also provide candidates within short period of time.
+                </p>
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <div className="font-semibold text-gray-900">Prabhakar Bodke</div>
+                  <div className="text-sm text-gray-600">HR Manager (Nirmiti Precision Pvt Ltd)</div>
                 </div>
               </div>
             </div>

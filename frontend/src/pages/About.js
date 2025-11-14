@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import ourClientsImg from '../assets/images/ourclients.jpg';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -13,12 +14,13 @@ const About = () => {
   }, []);
 
   const journeyMilestones = [
-    { year: "2015", title: "Founded", desc: "Started operations with a core team and a bold vision." },
-    { year: "2017", title: "First 100 Placements", desc: "Crossed the first big delivery milestone across key roles." },
-    { year: "2019", title: "Expanded Services", desc: "Added Staffing, Training and Interview Preparation verticals." },
-    { year: "2021", title: "Pan-India Presence", desc: "Built a partner network to support clients across major cities." },
-    { year: "2023", title: "Digital Acceleration", desc: "Launched a modern web platform and automation-first workflows." },
-    { year: "2025", title: "Talent Intelligence", desc: "Adopted data-led search and candidate experience enhancements." }
+    { year: "2013", title: "Started in Nashik", desc: "Working since 2013 across all industry types." },
+    { year: "2015", title: "Sinnar Expansion", desc: "Extended recruitment support in the Sinnar industrial zone." },
+    { year: "2017", title: "Ahilyanagar", desc: "Built a strong client network across Ahilyanagar region." },
+    { year: "2019", title: "Sambhaji Nagar", desc: "Specialized hiring for manufacturing and services verticals." },
+    { year: "2021", title: "Pune", desc: "Scaled operations for technology and enterprise hiring." },
+    { year: "2023", title: "Mumbai", desc: "End‑to‑end recruitment solutions for metro enterprises." },
+    { year: "Ethics", title: "Committed & On‑Time", desc: "Ethical hiring with deep understanding of client needs on time." }
   ];
   const leadershipTeam = [
     {
@@ -79,16 +81,324 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* About Us Content (client-provided) */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto" data-aos="fade-up">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">About Us</h2>
+            <div className="space-y-6 text-gray-700 leading-relaxed">
+              <p>
+                Siddhivinayak Employment Services is a leading service provider of recruitment and training needs, providing exceptional services to our clients and job seekers across the country. Established in the year 2013, we are a professionally managed placement and training consultancy firm with a network across India. We have built enduring relationships with our clients across India.
+              </p>
+              <p>
+                As a service partner, we help organizations build their human capital by sourcing professionals with intellectual skills, and we help individuals build their careers. We are also associated with various premier industry associations and chambers of commerce and industry in India and overseas.
+              </p>
+              <p>
+                Siddhivinayak Employment Services comprises a group of experienced industry specialists. We place great value on Human Resource Development and in placing the right people in the right jobs by offering need-based manpower recruitment services, backed by our in-depth understanding of client requirements.
+              </p>
+              <p>
+                We combine vision, expertise, and experience with an entrepreneurial spirit to deliver complex, urgent, and need-based staffing requirements quickly, efficiently, and professionally. Placing candidates in the right positions is the key to achieving outstanding business development results.
+              </p>
+              <p>
+                Our team of experienced and specialized recruitment associates conducts aggressive searches with proper screening, matching the right candidates to the appropriate job openings. We work closely with clients to determine the exact qualifications and skill sets needed, interview candidates extensively to ensure fit for the job and culture, and remain engaged through final interviews, offer release, joining, and post-joining follow-ups.
+              </p>
+              <p>
+                We provide our esteemed clients with customized, prompt, high-quality services of high ethical standards. We are totally committed to hiring the best professionals to suit every possible vacancy and, in turn, have acquired an enviable reputation and trust in India as a leading employment agency for Entry, Middle, and Senior Management recruitment.
+              </p>
+              <p>
+                We also help organizations establish and strengthen their HR departments by designing, developing, and implementing training solutions that help clients achieve their objectives by acquiring, developing, and retaining the best talent. These training solutions use the most suitable practices, tools, and techniques, ultimately resulting in improved bottom lines.
+              </p>
+
+            </div>
+
+            <div className="mt-12 space-y-16">
+              {/* Our EDGE Cards */}
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Our EDGE: Why choose Siddhivinayak Employment Services?</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* Best Processes */}
+                  <div className="rounded-xl border border-gray-100 shadow-md overflow-hidden bg-white transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-sky-100" data-aos="fade-up">
+                    <div className="bg-gradient-to-r from-sky-600 to-blue-600 text-white px-5 py-3">
+                      <div className="text-sm uppercase tracking-wider opacity-90">Best Processes</div>
+                    </div>
+                    <div className="p-5 text-gray-700 leading-relaxed">
+                      <p>We have developed industry-specific processes that recognize your needs and deliver the right candidates every single time.</p>
+                    </div>
+                  </div>
+
+                  {/* Comprehensive Research */}
+                  <div className="rounded-xl border border-gray-100 shadow-md overflow-hidden bg-white transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-pink-100" data-aos="fade-up" data-aos-delay="100">
+                    <div className="bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white px-5 py-3">
+                      <div className="text-sm uppercase tracking-wider opacity-90">Comprehensive Research</div>
+                    </div>
+                    <div className="p-5 text-gray-700 leading-relaxed">
+                      <p>We leave no stone unturned. We understand client needs deeply and present solutions that align precisely with those needs.</p>
+                    </div>
+                  </div>
+
+                  {/* Integrated Service */}
+                  <div className="rounded-xl border border-gray-100 shadow-md overflow-hidden bg-white transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-emerald-100" data-aos="fade-up" data-aos-delay="200">
+                    <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-5 py-3">
+                      <div className="text-sm uppercase tracking-wider opacity-90">Integrated Service</div>
+                    </div>
+                    <div className="p-5 text-gray-700 leading-relaxed">
+                      <p>Difficulty finding the best candidates? We also conduct training in Nashik to groom and equip candidates with the right skill sets.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission, Vision & Values Section */}
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16" data-aos="fade-up">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              MISSION, VISION & VALUES
+            </h2>
+          </div>
+
+          <div className="relative max-w-7xl mx-auto">
+            {/* Grid Layout Container */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative min-h-[800px]">
+              
+              {/* Left Column - OUR MISSION */}
+              <div className="lg:col-span-1 flex items-start justify-center lg:justify-end">
+                <div className="w-full max-w-[350px] relative" data-aos="fade-right" data-aos-delay="100">
+                  <div className="bg-white rounded-lg shadow-lg p-6 relative z-20">
+                    <div className="flex items-center mb-4">
+                      <div className="w-3 h-3 bg-pink-500 rounded-full mr-3 flex-shrink-0"></div>
+                      <h3 className="text-lg md:text-xl font-bold text-pink-600">OUR MISSION</h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-sm md:text-base">
+                      We are committed to support our esteemed client's requirements by delivering on time, building trustworthy relationships and by offering complete requirement and training solutions. Our mission is to grow with existing customer by utilizing existing capacity and expands with new clients by Penetrating new client segment on India basis through technology up gradation.
+                    </p>
+                  </div>
+                  {/* Connecting line from circle */}
+                  <svg className="absolute hidden lg:block" style={{ left: '24px', top: '28px', width: '400px', height: '200px', zIndex: 1 }}>
+                    <path
+                      d="M 0 0 Q 100 30 200 70 L 380 120"
+                      stroke="#ec4899"
+                      strokeWidth="2"
+                      fill="none"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Center Column - Puzzle Pieces */}
+              <div className="lg:col-span-1 flex items-center justify-center relative">
+                <div className="relative w-full h-[600px] flex items-center justify-center">
+                  {/* Mission Puzzle Piece */}
+                  <div className="absolute top-20 left-1/2 -translate-x-1/2 md:-translate-x-[120px]" data-aos="fade-up" data-aos-delay="300">
+                    <svg width="200" height="200" viewBox="0 0 200 200" className="drop-shadow-xl">
+                      <defs>
+                        <linearGradient id="missionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#ec4899" />
+                          <stop offset="100%" stopColor="#db2777" />
+                        </linearGradient>
+                        <filter id="shadow">
+                          <feDropShadow dx="3" dy="3" stdDeviation="3" floodOpacity="0.3"/>
+                        </filter>
+                      </defs>
+                      <path
+                        d="M 20 20 L 140 20 L 140 60 L 160 60 L 160 140 L 20 140 L 20 100 L 0 100 L 0 60 Z"
+                        fill="url(#missionGradient)"
+                        stroke="#be185d"
+                        strokeWidth="2"
+                        filter="url(#shadow)"
+                      />
+                      <text
+                        x="90"
+                        y="100"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        fill="white"
+                        fontSize="26"
+                        fontWeight="bold"
+                        fontFamily="Arial, sans-serif"
+                        letterSpacing="1px"
+                      >
+                        MISSION
+                      </text>
+                    </svg>
+                  </div>
+
+                  {/* Vision Puzzle Piece */}
+                  <div className="absolute top-20 right-1/2 translate-x-1/2 md:translate-x-[120px]" data-aos="fade-up" data-aos-delay="400">
+                    <svg width="200" height="200" viewBox="0 0 200 200" className="drop-shadow-xl">
+                      <defs>
+                        <linearGradient id="visionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#f97316" />
+                          <stop offset="100%" stopColor="#ea580c" />
+                        </linearGradient>
+                        <filter id="shadow2">
+                          <feDropShadow dx="3" dy="3" stdDeviation="3" floodOpacity="0.3"/>
+                        </filter>
+                      </defs>
+                      <path
+                        d="M 40 20 L 160 20 L 160 60 L 180 60 L 180 100 L 160 100 L 160 140 L 40 140 L 40 100 L 20 100 L 20 60 Z"
+                        fill="url(#visionGradient)"
+                        stroke="#c2410c"
+                        strokeWidth="2"
+                        filter="url(#shadow2)"
+                      />
+                      <text
+                        x="100"
+                        y="100"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        fill="white"
+                        fontSize="26"
+                        fontWeight="bold"
+                        fontFamily="Arial, sans-serif"
+                        letterSpacing="1px"
+                      >
+                        VISION
+                      </text>
+                    </svg>
+                  </div>
+
+                  {/* Values Puzzle Piece */}
+                  <div className="absolute bottom-20 left-1/2 -translate-x-1/2" data-aos="fade-up" data-aos-delay="500">
+                    <svg width="200" height="200" viewBox="0 0 200 200" className="drop-shadow-xl">
+                      <defs>
+                        <linearGradient id="valuesGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#84cc16" />
+                          <stop offset="100%" stopColor="#65a30d" />
+                        </linearGradient>
+                        <filter id="shadow3">
+                          <feDropShadow dx="3" dy="3" stdDeviation="3" floodOpacity="0.3"/>
+                        </filter>
+                      </defs>
+                      <path
+                        d="M 20 40 L 60 40 L 60 20 L 100 20 L 100 40 L 160 40 L 160 160 L 100 160 L 100 180 L 60 180 L 60 160 L 20 160 Z"
+                        fill="url(#valuesGradient)"
+                        stroke="#4d7c0f"
+                        strokeWidth="2"
+                        filter="url(#shadow3)"
+                      />
+                      <text
+                        x="90"
+                        y="110"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        fill="white"
+                        fontSize="26"
+                        fontWeight="bold"
+                        fontFamily="Arial, sans-serif"
+                        letterSpacing="1px"
+                      >
+                        VALUES
+                      </text>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column - OUR VISION & OUR VALUES */}
+              <div className="lg:col-span-1 flex flex-col gap-8 items-start justify-start">
+                {/* OUR VISION */}
+                <div className="w-full max-w-[350px] relative" data-aos="fade-left" data-aos-delay="200">
+                  <div className="bg-white rounded-lg shadow-lg p-6 relative z-20">
+                    <div className="flex items-center mb-4">
+                      <div className="w-3 h-3 bg-orange-500 rounded-full mr-3 flex-shrink-0"></div>
+                      <h3 className="text-lg md:text-xl font-bold text-orange-600">OUR VISION</h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-sm md:text-base">
+                      Our vision is inspired with on mission to create leaders, Winners and Achievers in a global Competitive Worlds. To be globally recognized as reputed Professional Consulting Firm for Corporate, Individuals and Entrepreneurs. Our vision for next decade is to become first choice of Business Partners for Employment services by strong links with existing & new clients.
+                    </p>
+                  </div>
+                  {/* Connecting line from circle */}
+                  <svg className="absolute hidden lg:block" style={{ right: '24px', top: '28px', width: '400px', height: '200px', zIndex: 1 }}>
+                    <path
+                      d="M 0 0 Q -100 30 -200 70 L -380 120"
+                      stroke="#f97316"
+                      strokeWidth="2"
+                      fill="none"
+                    />
+                  </svg>
+                </div>
+
+                {/* OUR VALUES */}
+                <div className="w-full max-w-[350px] relative mt-auto" data-aos="fade-left" data-aos-delay="600">
+                  <div className="bg-white rounded-lg shadow-lg p-6 relative z-20">
+                    <div className="flex items-center mb-4">
+                      <div className="w-3 h-3 bg-lime-500 rounded-full mr-3 flex-shrink-0"></div>
+                      <h3 className="text-lg md:text-xl font-bold text-lime-600">OUR VALUES</h3>
+                    </div>
+                    <ul className="text-gray-700 leading-relaxed space-y-2 text-sm md:text-base">
+                      <li className="flex items-start">
+                        <span className="text-lime-600 mr-2">•</span>
+                        <span>Build Long Term Relationship</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-lime-600 mr-2">•</span>
+                        <span>Empower People</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-lime-600 mr-2">•</span>
+                        <span>Spread Knowledge</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-lime-600 mr-2">•</span>
+                        <span>Build Trust</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-lime-600 mr-2">•</span>
+                        <span>Delivered Optimal Result</span>
+                      </li>
+                    </ul>
+                  </div>
+                  {/* Connecting line from circle */}
+                  <svg className="absolute hidden lg:block" style={{ right: '24px', bottom: '28px', width: '400px', height: '300px', zIndex: 1 }}>
+                    <path
+                      d="M 0 0 Q -80 -50 -160 -100 L -360 -250"
+                      stroke="#84cc16"
+                      strokeWidth="2"
+                      fill="none"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Clients Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12" data-aos="fade-up">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">Our Clients</h2>
+          </div>
+          <div className="max-w-5xl mx-auto" data-aos="zoom-in">
+            <img
+              src={ourClientsImg}
+              alt="Our Clients"
+              className="w-full md:w-11/12 lg:w-10/12 xl:w-3/4 h-auto rounded-lg shadow-lg object-contain mx-auto"
+              decoding="async"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      </section>
       {/* Our Journey Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center" data-aos="fade-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Our Journey
-            </h2>
-            <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-12">
-              From one office in Kolkata to a network of offices pan India, take a look at our
-              growth milestones and how we continued to evolve with our clients.
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Journey</h2>
+            <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+              Working since 2013 for all type industries at Nashik, Sinnar, Ahilyanagar,
+              Sambhaji Nagar, Pune & Mumbai industrial zones.
+            </p>
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mt-4 mb-12">
+              We provide recruitment solutions and are committed to work ethically with a deep
+              understanding of our clients’ needs — on time.
             </p>
           </div>
 
@@ -120,20 +430,21 @@ const About = () => {
 
           {/* Desktop Circular Journey Chart */}
           <div className="hidden md:flex justify-center" data-aos="zoom-in">
-            <div className="relative w-[480px] h-[480px]">
+            <div className="relative w-[520px] h-[520px]">
               {/* Outer ring (slow rotation) */}
-              <div className="absolute inset-0 rounded-full border-8 border-blue-100 animate-spin" style={{ animationDuration: '20s' }} />
+              <div className="absolute inset-0 rounded-full border-8 border-blue-100/70 animate-spin" style={{ animationDuration: '24s' }} />
               {/* Inner ring (counter-feel via different speed) */}
-              <div className="absolute inset-8 rounded-full border-4 border-blue-50 animate-spin" style={{ animationDuration: '30s' }} />
+              <div className="absolute inset-8 rounded-full border-4 border-cyan-100/70 animate-spin" style={{ animationDuration: '36s' }} />
 
-              {/* Center badge (clean, no company name) */}
+              {/* Center badge */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-36 h-36 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 shadow-xl flex items-center justify-center">
+                <div className="w-40 h-40 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 shadow-2xl flex items-center justify-center">
                   <div className="text-center text-white">
-                    <div className="text-xs uppercase tracking-widest opacity-90">Journey</div>
+                    <div className="text-xs uppercase tracking-widest opacity-90">Since</div>
                     <svg className="mx-auto mt-1 w-7 h-7 opacity-95" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
+                    <div className="mt-1 text-lg font-bold">2013</div>
                   </div>
                 </div>
               </div>
@@ -152,10 +463,10 @@ const About = () => {
                     data-aos="fade-up"
                     data-aos-delay={delay}
                   >
-                    <div className="flex flex-col items-center w-44 -mt-4">
+                    <div className="flex flex-col items-center w-48 -mt-4">
                       <span className="relative mb-2 inline-flex items-center justify-center w-10 h-10">
-                        <span className="absolute inline-flex w-full h-full rounded-full bg-blue-400 opacity-30 animate-ping"></span>
-                        <span className="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white text-xs font-semibold shadow-md ring-4 ring-white">
+                        <span className="absolute inline-flex w-full h-full rounded-full bg-blue-400/40 animate-ping"></span>
+                        <span className="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white text-xs font-semibold shadow-lg ring-4 ring-white">
                           {m.year}
                         </span>
                       </span>
@@ -244,6 +555,7 @@ const About = () => {
                   India's Top 25 Safest Places to Work by KelpHR for two years in a row
                 </li>
                 <li className="flex items-start" data-aos="fade-up" data-aos-delay="400">
+
                   <svg className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
@@ -262,36 +574,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* News Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16" data-aos="fade-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Siddhivinayak In The News
-            </h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {newsArticles.map((article, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300" data-aos="fade-up" data-aos-delay={index * 200}>
-                <div className="h-48 overflow-hidden">
-                  <img 
-                    src={article.image} 
-                    alt={article.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <p className="text-sm text-gray-500 mb-2">{article.date}</p>
-                  <h3 className="text-lg font-semibold text-gray-900 hover:text-blue-600 transition duration-300">
-                    {article.title}
-                  </h3>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* Our Offices Section */}
       <section className="py-20 bg-white">

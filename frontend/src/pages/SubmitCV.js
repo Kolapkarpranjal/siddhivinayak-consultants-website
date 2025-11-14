@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import resumeHero from '../assets/images/hero/resume.webp';
 
 const SubmitCV = () => {
@@ -17,6 +18,8 @@ const SubmitCV = () => {
     degree: '',
     resume: null
   });
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState({ type: '', text: '' });
 
   const handleInputChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -24,13 +27,78 @@ const SubmitCV = () => {
       ...formData,
       [name]: type === 'file' ? files[0] : value
     });
+    setMessage({ type: '', text: '' }); // Clear message on input change
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    alert('Thank you for submitting your CV! We will review it and get back to you soon.');
+    setLoading(true);
+    setMessage({ type: '', text: '' });
+
+    try {
+      // Create FormData for file upload
+      const submitData = new FormData();
+      submitData.append('firstName', formData.firstName);
+      submitData.append('lastName', formData.lastName);
+      submitData.append('email', formData.email);
+      submitData.append('phone', formData.mobile);
+      submitData.append('position', formData.designation || '');
+      submitData.append('experience', formData.experience || '');
+      
+      // Add resume file
+      if (formData.resume) {
+        submitData.append('resume', formData.resume);
+      } else {
+        setMessage({ type: 'error', text: 'Please upload your resume file' });
+        setLoading(false);
+        return;
+      }
+
+      const response = await axios.post('http://localhost:5000/api/cv', submitData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      if (response.data.success) {
+        setMessage({ 
+          type: 'success', 
+          text: response.data.message || 'CV submitted successfully! We will review it and get back to you soon.' 
+        });
+        
+        // Reset form
+        setFormData({
+          firstName: '',
+          lastName: '',
+          gender: '',
+          dob: '',
+          email: '',
+          mobile: '',
+          city: '',
+          company: '',
+          designation: '',
+          experience: '',
+          currentCTC: '',
+          degree: '',
+          resume: null
+        });
+        
+        // Reset file input
+        const fileInput = document.getElementById('resume');
+        if (fileInput) fileInput.value = '';
+      }
+    } catch (error) {
+      if (error.response?.data?.message) {
+        setMessage({ type: 'error', text: error.response.data.message });
+      } else if (error.response?.data?.errors) {
+        const errorMsg = error.response.data.errors.map(e => e.msg).join(', ');
+        setMessage({ type: 'error', text: errorMsg });
+      } else {
+        setMessage({ type: 'error', text: 'Failed to submit CV. Please try again.' });
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -64,6 +132,28 @@ const SubmitCV = () => {
               Please fill out the form below with your details. All fields marked with * are required.
             </p>
           </div>
+
+          {/* Success/Error Message */}
+          {message.text && (
+            <div className={`mb-6 p-4 rounded-lg ${
+              message.type === 'success' 
+                ? 'bg-green-50 border border-green-200 text-green-800' 
+                : 'bg-red-50 border border-red-200 text-red-800'
+            }`}>
+              <div className="flex items-center">
+                {message.type === 'success' ? (
+                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                )}
+                <p className="font-medium">{message.text}</p>
+              </div>
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Personal Details */}
@@ -290,27 +380,46 @@ const SubmitCV = () => {
               <label htmlFor="resume" className="block text-sm font-medium text-gray-700 mb-2">
                 Upload Resume *
               </label>
-              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400 transition duration-300">
-                <div className="space-y-1 text-center">
-                  <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <div className="flex text-sm text-gray-600">
-                    <label htmlFor="resume" className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-                      <span>Upload a file</span>
-                      <input
-                        id="resume"
-                        name="resume"
-                        type="file"
-                        accept=".pdf,.doc,.docx"
-                        onChange={handleInputChange}
-                        required
-                        className="sr-only"
-                      />
-                    </label>
-                    <p className="pl-1">or drag and drop</p>
-                  </div>
-                  <p className="text-xs text-gray-500">PDF, DOC, DOCX up to 10MB</p>
+              <div className={`mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed rounded-lg transition duration-300 ${
+                formData.resume 
+                  ? 'border-green-400 bg-green-50' 
+                  : 'border-gray-300 hover:border-gray-400'
+              }`}>
+                <div className="space-y-1 text-center w-full">
+                  {formData.resume ? (
+                    <div className="space-y-2">
+                      <svg className="mx-auto h-12 w-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <p className="text-sm font-medium text-green-700">{formData.resume.name}</p>
+                      <p className="text-xs text-green-600">{(formData.resume.size / 1024 / 1024).toFixed(2)} MB</p>
+                      <label htmlFor="resume" className="text-xs text-blue-600 hover:text-blue-800 cursor-pointer underline">
+                        Change file
+                      </label>
+                    </div>
+                  ) : (
+                    <>
+                      <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <div className="flex text-sm text-gray-600 justify-center">
+                        <label htmlFor="resume" className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                          <span>Upload a file</span>
+                          <input
+                            id="resume"
+                            name="resume"
+                            type="file"
+                            accept=".pdf,.doc,.docx"
+                            onChange={handleInputChange}
+                            required
+                            className="sr-only"
+                          />
+                        </label>
+                        <p className="pl-1">or drag and drop</p>
+                      </div>
+                    </>
+                  )}
+                  <p className="text-xs text-gray-500">PDF, DOC, DOCX up to 5MB</p>
                 </div>
               </div>
             </div>
@@ -319,9 +428,10 @@ const SubmitCV = () => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-12 py-4 rounded-lg transition duration-300 transform hover:scale-105"
+                disabled={loading}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-12 py-4 rounded-lg transition duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                Submit CV
+                {loading ? 'Submitting...' : 'Submit CV'}
               </button>
             </div>
           </form>

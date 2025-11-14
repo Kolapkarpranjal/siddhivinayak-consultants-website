@@ -102,6 +102,17 @@ const Contact = () => {
               <p className="text-gray-600">Reach out and we'll get in touch within 24 hours.</p>
             </div>
 
+            {/* Requirements Request Section */}
+            <div className="bg-blue-50 rounded-lg p-6 mb-8">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Resourcing Requirements</h3>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                We request you to forward us the requirements time to time with criteria. Assuring you of committed engagement & our quality services.
+              </p>
+              <p className="text-gray-700 font-medium">
+                Contact us if you have a Resourcing Requirement or one coming up..!
+              </p>
+            </div>
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>

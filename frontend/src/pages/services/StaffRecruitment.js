@@ -40,6 +40,22 @@ const StaffRecruitment = () => {
             for their specific needs. We understand that every role is unique, and we tailor our approach 
             to match your company culture and requirements.
           </p>
+          
+          {/* Team Description */}
+          <div className="bg-blue-50 rounded-lg p-6 mb-8">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Our Expert Team</h3>
+            <p className="text-gray-700 leading-relaxed">
+              We have a team of skilled recruiters and headhunters who source the right candidate by exploiting our private database, their personal network, multilevel networking and job portals.
+            </p>
+          </div>
+
+          {/* Industries Section */}
+          <div className="mb-8">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Industries We Serve</h3>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              We cater recruitment solutions to various industries like Engineering, Automobile, Pharmaceutical, Food, Chemical, Civil, Glass, Paper, Polymer, BPO, ITES, Telecom, Banking, Hospitality, Healthcare, Medical, Secretary, Front Office, Data Entry, etc.
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">What We Offer</h3>
@@ -89,6 +105,62 @@ const StaffRecruitment = () => {
                   <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">4</div>
                   <span className="text-gray-700">Interview Coordination & Final Selection</span>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Our Features Section */}
+        <div className="bg-white rounded-lg shadow-md p-8 mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Features</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex items-start space-x-4">
+              <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0">1</div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Extensive CV Database</h3>
+                <p className="text-gray-700">We have 4,50,000 soft CV's & additional sources.</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-4">
+              <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0">2</div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Dedicated Recruiter Team</h3>
+                <p className="text-gray-700">We have a team of 8 skilled recruiters who continuously work on vacant positions.</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-4">
+              <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0">3</div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Focused Attention</h3>
+                <p className="text-gray-700">After receiving the vacancy we focus all our attention on the same task.</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-4">
+              <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0">4</div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Quick Lead Time</h3>
+                <p className="text-gray-700">Our lead time is 16:00 hrs. We provide you a profile matching CV's against requirements.</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-4">
+              <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0">5</div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Comprehensive Background Check</h3>
+                <p className="text-gray-700">We do full background check of candidates, as well as check its location suitability for outside candidates & the reason why he is changing his present job, etc.</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-4">
+              <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0">6</div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Head Hunting Services</h3>
+                <p className="text-gray-700">We can provide good candidates by Head Hunting in Advance. All these screening tasks are performed by us.</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-4 md:col-span-2">
+              <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0">7</div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">End-to-End Support</h3>
+                <p className="text-gray-700">We do all formalities of candidates from Interview to joining.</p>
               </div>
             </div>
           </div>

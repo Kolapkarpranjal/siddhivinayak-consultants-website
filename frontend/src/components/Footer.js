@@ -1,21 +1,23 @@
 import React from 'react';
+import footerLogo from '../assets/images/logo/logo1.png';
 
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold text-blue-400 mb-4">
+            <img src={footerLogo} alt="Siddhivinayak Consultants Logo" className="h-14 w-auto mb-3 object-contain" />
+            <h3 className="text-xl font-bold text-blue-400 mb-3">
               Siddhivinayak Consultants
             </h3>
-            <p className="text-gray-300 leading-relaxed mb-4">
+            <p className="text-gray-300 leading-relaxed mb-3 text-sm">
               Your trusted partner for professional consulting services. 
               We help businesses achieve their goals through strategic guidance 
               and innovative solutions.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-3">
               <a href="#" className="text-gray-300 hover:text-blue-400 transition duration-300">
                 <span className="sr-only">Facebook</span>
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -39,7 +41,7 @@ const Footer = () => {
           
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
             <ul className="space-y-2">
               <li>
                 <a href="/" className="text-gray-300 hover:text-blue-400 transition duration-300">
@@ -66,33 +68,60 @@ const Footer = () => {
           
           {/* Contact Info */}
           <div>
-            <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
-            <div className="space-y-3">
+            <h3 className="text-lg font-semibold mb-3">Contact Info</h3>
+            <div className="space-y-2 text-sm">
               <div className="flex items-start space-x-3">
                 <span className="text-blue-400 mt-1">📍</span>
                 <div>
                   <p className="text-gray-300">
-                    123 Business Street<br />
-                    Mumbai, Maharashtra 400001<br />
-                    India
+                    Office No -3, Chaitnya Vilas Apartment,<br />
+                    Chhatrapati Chauk, Shivaji Nagar, Sinnar,<br />
+                    Maharashtra (India)
+                  </p>
+                </div>
+              </div>
+              {/* Additional Office Address */}
+              <div className="flex items-start space-x-3">
+                <span className="text-blue-400 mt-1">📍</span>
+                <div>
+                  <p className="text-gray-300">
+                    Siddhivinayak Employment Services,<br />
+                    Shop NO. 315, 3rd Floor, Roongta Majestic Apartment,<br />
+                    Kamod Nagar, Nashik – 422009, Maharashtra
                   </p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
-                <span className="text-blue-400">📞</span>
-                <p className="text-gray-300">+91 98765 43210</p>
+                <span className="text-blue-400">🌐</span>
+                <a href="https://www.siddhivinayakemployment.com" className="text-gray-300 hover:text-blue-400 transition" target="_blank" rel="noreferrer">
+                  www.siddhivinayakemployment.com
+                </a>
               </div>
               <div className="flex items-center space-x-3">
                 <span className="text-blue-400">✉️</span>
-                <p className="text-gray-300">info@siddhivinayakconsultants.com</p>
+                <a href="mailto:siddhivinayakemployment@gmail.com" className="text-gray-300 hover:text-blue-400 transition">
+                  siddhivinayakemployment@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <span className="text-blue-400">📞</span>
+                <a href="tel:7774811211" className="text-gray-300 hover:text-blue-400 transition">
+                  777-481-1211
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <span className="text-blue-400">☎️</span>
+                <a href="tel:02534013745" className="text-gray-300 hover:text-blue-400 transition">
+                  0253-4013745
+                </a>
               </div>
             </div>
           </div>
         </div>
         
         {/* Bottom Bar */}
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p className="text-gray-300">
+        <div className="border-t border-gray-700 mt-6 pt-6 text-center">
+          <p className="text-gray-300 text-sm">
             © 2024 Siddhivinayak Consultants. All rights reserved.
           </p>
         </div>

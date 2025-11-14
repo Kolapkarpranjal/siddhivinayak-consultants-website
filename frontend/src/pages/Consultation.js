@@ -115,7 +115,7 @@ const Consultation = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">Call Us Now</h3>
-                  <p className="text-blue-600 font-medium">+91 98765 43210</p>
+                  <a href="tel:7774811211" className="text-blue-600 font-medium">777-481-1211</a>
                 </div>
               </div>
               
@@ -141,7 +141,20 @@ const Consultation = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">Email Us</h3>
-                  <p className="text-purple-600 font-medium">info@siddhivinayak.com</p>
+                  <a href="mailto:siddhivinayakemployment@gmail.com" className="text-purple-600 font-medium">siddhivinayakemployment@gmail.com</a>
+                </div>
+              </div>
+
+              {/* Website */}
+              <div className="bg-cyan-50 rounded-lg p-4 flex items-center space-x-4 hover:bg-cyan-100 transition duration-300">
+                <div className="w-12 h-12 bg-cyan-600 rounded-full flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a8 8 0 100 15.292 8 8 0 000-15.292z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">Website</h3>
+                  <a href="https://www.siddhivinayakemployment.com" target="_blank" rel="noreferrer" className="text-cyan-700 font-medium">www.siddhivinayakemployment.com</a>
                 </div>
               </div>
             </div>

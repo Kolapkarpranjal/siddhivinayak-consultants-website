@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import logo from '../assets/images/logo/logo2.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,18 +29,17 @@ const Header = () => {
   return (
     <header className={`${scrolled ? 'bg-white shadow-2xl' : 'bg-white shadow-xl'} rounded-2xl mx-4 mt-4 sticky top-0 z-50 transition-all duration-500`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-2">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
-              </svg>
-            </div>
-            <h1 className="text-lg sm:text-xl font-bold text-gray-900">
-              <span className="hidden sm:inline">Siddhivinayak Consultants</span>
-              <span className="sm:hidden">SVC</span>
-            </h1>
+          <div className="flex items-center">
+            <a href="/" className="flex items-center hover:opacity-90 transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg">
+              <img 
+                src={logo} 
+                alt="Siddhivinayak Consultants Logo" 
+                className="h-24 w-auto object-contain m-0 p-0 block cursor-pointer transition-transform duration-200 ease-out hover:scale-105 active:scale-110"
+              />
+              
+            </a>
           </div>
           
           {/* Desktop Navigation */}

@@ -18,6 +18,12 @@ import Staffing from './pages/services/Staffing';
 import Training from './pages/services/Training';
 import ResumeBuilding from './pages/services/ResumeBuilding';
 import InterviewPreparation from './pages/services/InterviewPreparation';
+// Admin pages
+import AdminLogin from './pages/admin/Login';
+import AdminDashboard from './pages/admin/Dashboard';
+import AdminContacts from './pages/admin/Contacts';
+import AdminCVs from './pages/admin/CVs';
+import AdminJobs from './pages/admin/Jobs';
 import './App.css';
 
 function App() {
@@ -26,27 +32,39 @@ function App() {
   }, []);
   return (
     <Router>
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/services/staff-recruitment" element={<StaffRecruitment />} />
-            <Route path="/services/staffing" element={<Staffing />} />
-            <Route path="/services/training" element={<Training />} />
-            <Route path="/services/resume-building" element={<ResumeBuilding />} />
-            <Route path="/services/interview-preparation" element={<InterviewPreparation />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/browse-jobs" element={<BrowseJobs />} />
-            <Route path="/submit-cv" element={<SubmitCV />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/consultation" element={<Consultation />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <Routes>
+        {/* Admin Routes (without Header/Footer) */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/contacts" element={<AdminContacts />} />
+        <Route path="/admin/cvs" element={<AdminCVs />} />
+        <Route path="/admin/jobs" element={<AdminJobs />} />
+        
+        {/* Public Routes (with Header/Footer) */}
+        <Route path="/*" element={
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/services/staff-recruitment" element={<StaffRecruitment />} />
+                <Route path="/services/staffing" element={<Staffing />} />
+                <Route path="/services/training" element={<Training />} />
+                <Route path="/services/resume-building" element={<ResumeBuilding />} />
+                <Route path="/services/interview-preparation" element={<InterviewPreparation />} />
+                <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/browse-jobs" element={<BrowseJobs />} />
+                <Route path="/submit-cv" element={<SubmitCV />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/consultation" element={<Consultation />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        } />
+      </Routes>
     </Router>
   );
 }

@@ -34,10 +34,32 @@ const Services = () => {
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">
           Our Services
         </h1>
-        <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-gray-600 mb-6 max-w-2xl mx-auto">
           We offer comprehensive consulting services to help your business achieve its goals 
           and reach new heights of success.
         </p>
+        
+        {/* Staff Recruitment Overview */}
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8 mb-12 max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Staff Recruitment Services</h2>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            We have a team of skilled recruiters and headhunters who source the right candidate by exploiting our private database, their personal network, multilevel networking and job portals.
+          </p>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            We cater recruitment solutions to various industries like Engineering, Automobile, Pharmaceutical, Food, Chemical, Civil, Glass, Paper, Polymer, BPO, ITES, Telecom, Banking, Hospitality, Healthcare, Medical, Secretary, Front Office, Data Entry, etc.
+          </p>
+          <div className="mt-6">
+            <a 
+              href="/services/staff-recruitment" 
+              className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold transition duration-300"
+            >
+              Learn More About Our Recruitment Services
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {services.map((service, index) => (
