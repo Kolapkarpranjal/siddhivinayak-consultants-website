@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Layout from '../../components/admin/Layout';
+import API_URL from '../../config/api';
 
 const CVs = () => {
   const [cvs, setCVs] = useState([]);
@@ -17,7 +18,7 @@ const CVs = () => {
     try {
       const token = localStorage.getItem('token');
       const params = statusFilter !== 'all' ? { status: statusFilter } : {};
-      const response = await axios.get('http://localhost:5000/api/admin/cvs', {
+      const response = await axios.get(`${API_URL}/api/admin/cvs`, {
         headers: { Authorization: `Bearer ${token}` },
         params
       });
@@ -39,7 +40,7 @@ const CVs = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:5000/api/admin/cvs/${id}`,
+        `${API_URL}/api/admin/cvs/${id}`,
         { status, notes },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -153,7 +154,7 @@ const CVs = () => {
                             </select>
                             {cv.resume && (
                               <a
-                                href={`http://localhost:5000/${cv.resume.path}`}
+                                href={`${API_URL}/${cv.resume.path}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors"

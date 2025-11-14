@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import resumeHero from '../assets/images/hero/resume.webp';
+import API_URL from '../config/api';
 
 const SubmitCV = () => {
   const [formData, setFormData] = useState({
@@ -54,7 +55,7 @@ const SubmitCV = () => {
         return;
       }
 
-      const response = await axios.post('http://localhost:5000/api/cv', submitData, {
+      const response = await axios.post(`${API_URL}/api/cv`, submitData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

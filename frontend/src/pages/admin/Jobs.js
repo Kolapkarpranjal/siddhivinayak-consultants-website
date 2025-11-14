@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Layout from '../../components/admin/Layout';
+import API_URL from '../../config/api';
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -61,7 +62,7 @@ const Jobs = () => {
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/admin/jobs/categories', {
+      const response = await axios.get(`${API_URL}/api/admin/jobs/categories`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.data.success) {
@@ -107,7 +108,7 @@ const Jobs = () => {
         ...(searchQuery && { search: searchQuery })
       };
       
-      const response = await axios.get('http://localhost:5000/api/admin/jobs', {
+      const response = await axios.get(`${API_URL}/api/admin/jobs`, {
         headers: { Authorization: `Bearer ${token}` },
         params
       });
@@ -137,13 +138,13 @@ const Jobs = () => {
 
       if (editingJob) {
         await axios.put(
-          `http://localhost:5000/api/admin/jobs/${editingJob._id}`,
+          `${API_URL}/api/admin/jobs/${editingJob._id}`,
           jobData,
           { headers: { Authorization: `Bearer ${token}` } }
         );
       } else {
         await axios.post(
-          'http://localhost:5000/api/admin/jobs',
+          `${API_URL}/api/admin/jobs`,
           jobData,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -202,7 +203,7 @@ const Jobs = () => {
       delete duplicateData.views;
       
       await axios.post(
-        'http://localhost:5000/api/admin/jobs',
+        `${API_URL}/api/admin/jobs`,
         duplicateData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -218,7 +219,7 @@ const Jobs = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.delete(
-        `http://localhost:5000/api/admin/jobs/${id}`,
+        `${API_URL}/api/admin/jobs/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       fetchJobs();
@@ -231,7 +232,7 @@ const Jobs = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.patch(
-        `http://localhost:5000/api/admin/jobs/${id}/toggle-status`,
+        `${API_URL}/api/admin/jobs/${id}/toggle-status`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

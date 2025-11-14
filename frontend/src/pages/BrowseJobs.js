@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import resumeHero from '../assets/images/hero/resume.webp';
+import API_URL from '../config/api';
 
 const BrowseJobs = () => {
   const navigate = useNavigate();
@@ -62,7 +63,7 @@ const BrowseJobs = () => {
         ...(searchFilters.location && { location: searchFilters.location })
       };
 
-      const response = await axios.get('http://localhost:5000/api/jobs', { params });
+      const response = await axios.get(`${API_URL}/api/jobs`, { params });
 
       if (response.data.success) {
         setJobs(response.data.data.jobs);

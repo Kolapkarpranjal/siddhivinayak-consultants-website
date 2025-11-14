@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Layout from '../../components/admin/Layout';
+import API_URL from '../../config/api';
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([]);
@@ -17,7 +18,7 @@ const Contacts = () => {
     try {
       const token = localStorage.getItem('token');
       const params = statusFilter !== 'all' ? { status: statusFilter } : {};
-      const response = await axios.get('http://localhost:5000/api/admin/contacts', {
+      const response = await axios.get(`${API_URL}/api/admin/contacts`, {
         headers: { Authorization: `Bearer ${token}` },
         params
       });
@@ -39,7 +40,7 @@ const Contacts = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:5000/api/admin/contacts/${id}`,
+        `${API_URL}/api/admin/contacts/${id}`,
         { status, isRead: true },
         { headers: { Authorization: `Bearer ${token}` } }
       );
