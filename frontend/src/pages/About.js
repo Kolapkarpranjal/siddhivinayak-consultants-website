@@ -153,217 +153,47 @@ const About = () => {
       </section>
 
       {/* Mission, Vision & Values Section */}
-      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16" data-aos="fade-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              MISSION, VISION & VALUES
-            </h2>
-          </div>
-
-          <div className="relative max-w-7xl mx-auto">
-            {/* Grid Layout Container */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative min-h-[800px]">
-              
-              {/* Left Column - OUR MISSION */}
-              <div className="lg:col-span-1 flex items-start justify-center lg:justify-end">
-                <div className="w-full max-w-[350px] relative" data-aos="fade-right" data-aos-delay="100">
-                  <div className="bg-white rounded-lg shadow-lg p-6 relative z-20">
-                    <div className="flex items-center mb-4">
-                      <div className="w-3 h-3 bg-pink-500 rounded-full mr-3 flex-shrink-0"></div>
-                      <h3 className="text-lg md:text-xl font-bold text-pink-600">OUR MISSION</h3>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed text-sm md:text-base">
-                      We are committed to support our esteemed client's requirements by delivering on time, building trustworthy relationships and by offering complete requirement and training solutions. Our mission is to grow with existing customer by utilizing existing capacity and expands with new clients by Penetrating new client segment on India basis through technology up gradation.
-                    </p>
-                  </div>
-                  {/* Connecting line from circle */}
-                  <svg className="absolute hidden lg:block" style={{ left: '24px', top: '28px', width: '400px', height: '200px', zIndex: 1 }}>
-                    <path
-                      d="M 0 0 Q 100 30 200 70 L 380 120"
-                      stroke="#ec4899"
-                      strokeWidth="2"
-                      fill="none"
-                    />
-                  </svg>
-                </div>
+      <section className="py-16 bg-white text-gray-800" data-aos="fade-up">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-12 uppercase tracking-wide">
+            Mission, Vision & Values
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Mission Card */}
+            <div className="bg-pink-500 text-white p-8 rounded-2xl shadow-lg relative" data-aos="fade-up" data-aos-delay="100">
+              <div className="absolute -top-5 left-6 bg-white text-pink-500 px-3 py-1 text-sm font-semibold rounded-full shadow">
+                Our Mission
               </div>
+              <h3 className="text-xl font-bold mb-4">Mission</h3>
+              <p className="text-sm leading-relaxed">
+                We are committed to support our esteemed client's requirements by delivering on time, building trustworthy relationships and by offering complete requirement and training solutions. Our mission is to grow with existing customers by utilizing existing capacity and expand with new clients by penetrating new client segments across India through technology upgradation.
+              </p>
+            </div>
 
-              {/* Center Column - Puzzle Pieces */}
-              <div className="lg:col-span-1 flex items-center justify-center relative">
-                <div className="relative w-full h-[600px] flex items-center justify-center">
-                  {/* Mission Puzzle Piece */}
-                  <div className="absolute top-20 left-1/2 -translate-x-1/2 md:-translate-x-[120px]" data-aos="fade-up" data-aos-delay="300">
-                    <svg width="200" height="200" viewBox="0 0 200 200" className="drop-shadow-xl">
-                      <defs>
-                        <linearGradient id="missionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#ec4899" />
-                          <stop offset="100%" stopColor="#db2777" />
-                        </linearGradient>
-                        <filter id="shadow">
-                          <feDropShadow dx="3" dy="3" stdDeviation="3" floodOpacity="0.3"/>
-                        </filter>
-                      </defs>
-                      <path
-                        d="M 20 20 L 140 20 L 140 60 L 160 60 L 160 140 L 20 140 L 20 100 L 0 100 L 0 60 Z"
-                        fill="url(#missionGradient)"
-                        stroke="#be185d"
-                        strokeWidth="2"
-                        filter="url(#shadow)"
-                      />
-                      <text
-                        x="90"
-                        y="100"
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        fill="white"
-                        fontSize="26"
-                        fontWeight="bold"
-                        fontFamily="Arial, sans-serif"
-                        letterSpacing="1px"
-                      >
-                        MISSION
-                      </text>
-                    </svg>
-                  </div>
-
-                  {/* Vision Puzzle Piece */}
-                  <div className="absolute top-20 right-1/2 translate-x-1/2 md:translate-x-[120px]" data-aos="fade-up" data-aos-delay="400">
-                    <svg width="200" height="200" viewBox="0 0 200 200" className="drop-shadow-xl">
-                      <defs>
-                        <linearGradient id="visionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#f97316" />
-                          <stop offset="100%" stopColor="#ea580c" />
-                        </linearGradient>
-                        <filter id="shadow2">
-                          <feDropShadow dx="3" dy="3" stdDeviation="3" floodOpacity="0.3"/>
-                        </filter>
-                      </defs>
-                      <path
-                        d="M 40 20 L 160 20 L 160 60 L 180 60 L 180 100 L 160 100 L 160 140 L 40 140 L 40 100 L 20 100 L 20 60 Z"
-                        fill="url(#visionGradient)"
-                        stroke="#c2410c"
-                        strokeWidth="2"
-                        filter="url(#shadow2)"
-                      />
-                      <text
-                        x="100"
-                        y="100"
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        fill="white"
-                        fontSize="26"
-                        fontWeight="bold"
-                        fontFamily="Arial, sans-serif"
-                        letterSpacing="1px"
-                      >
-                        VISION
-                      </text>
-                    </svg>
-                  </div>
-
-                  {/* Values Puzzle Piece */}
-                  <div className="absolute bottom-20 left-1/2 -translate-x-1/2" data-aos="fade-up" data-aos-delay="500">
-                    <svg width="200" height="200" viewBox="0 0 200 200" className="drop-shadow-xl">
-                      <defs>
-                        <linearGradient id="valuesGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#84cc16" />
-                          <stop offset="100%" stopColor="#65a30d" />
-                        </linearGradient>
-                        <filter id="shadow3">
-                          <feDropShadow dx="3" dy="3" stdDeviation="3" floodOpacity="0.3"/>
-                        </filter>
-                      </defs>
-                      <path
-                        d="M 20 40 L 60 40 L 60 20 L 100 20 L 100 40 L 160 40 L 160 160 L 100 160 L 100 180 L 60 180 L 60 160 L 20 160 Z"
-                        fill="url(#valuesGradient)"
-                        stroke="#4d7c0f"
-                        strokeWidth="2"
-                        filter="url(#shadow3)"
-                      />
-                      <text
-                        x="90"
-                        y="110"
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        fill="white"
-                        fontSize="26"
-                        fontWeight="bold"
-                        fontFamily="Arial, sans-serif"
-                        letterSpacing="1px"
-                      >
-                        VALUES
-                      </text>
-                    </svg>
-                  </div>
-                </div>
+            {/* Vision Card */}
+            <div className="bg-orange-400 text-white p-8 rounded-2xl shadow-lg relative" data-aos="fade-up" data-aos-delay="200">
+              <div className="absolute -top-5 left-6 bg-white text-orange-500 px-3 py-1 text-sm font-semibold rounded-full shadow">
+                Our Vision
               </div>
+              <h3 className="text-xl font-bold mb-4">Vision</h3>
+              <p className="text-sm leading-relaxed">
+                Our vision is inspired by our mission to create leaders, winners, and achievers in a globally competitive world. We strive to be recognized as a reputed professional consulting firm for corporates, individuals, and entrepreneurs. Our vision for the next decade is to become the first choice of business partners for employment services by building strong links with existing and new clients.
+              </p>
+            </div>
 
-              {/* Right Column - OUR VISION & OUR VALUES */}
-              <div className="lg:col-span-1 flex flex-col gap-8 items-start justify-start">
-                {/* OUR VISION */}
-                <div className="w-full max-w-[350px] relative" data-aos="fade-left" data-aos-delay="200">
-                  <div className="bg-white rounded-lg shadow-lg p-6 relative z-20">
-                    <div className="flex items-center mb-4">
-                      <div className="w-3 h-3 bg-orange-500 rounded-full mr-3 flex-shrink-0"></div>
-                      <h3 className="text-lg md:text-xl font-bold text-orange-600">OUR VISION</h3>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed text-sm md:text-base">
-                      Our vision is inspired with on mission to create leaders, Winners and Achievers in a global Competitive Worlds. To be globally recognized as reputed Professional Consulting Firm for Corporate, Individuals and Entrepreneurs. Our vision for next decade is to become first choice of Business Partners for Employment services by strong links with existing & new clients.
-                    </p>
-                  </div>
-                  {/* Connecting line from circle */}
-                  <svg className="absolute hidden lg:block" style={{ right: '24px', top: '28px', width: '400px', height: '200px', zIndex: 1 }}>
-                    <path
-                      d="M 0 0 Q -100 30 -200 70 L -380 120"
-                      stroke="#f97316"
-                      strokeWidth="2"
-                      fill="none"
-                    />
-                  </svg>
-                </div>
-
-                {/* OUR VALUES */}
-                <div className="w-full max-w-[350px] relative mt-auto" data-aos="fade-left" data-aos-delay="600">
-                  <div className="bg-white rounded-lg shadow-lg p-6 relative z-20">
-                    <div className="flex items-center mb-4">
-                      <div className="w-3 h-3 bg-lime-500 rounded-full mr-3 flex-shrink-0"></div>
-                      <h3 className="text-lg md:text-xl font-bold text-lime-600">OUR VALUES</h3>
-                    </div>
-                    <ul className="text-gray-700 leading-relaxed space-y-2 text-sm md:text-base">
-                      <li className="flex items-start">
-                        <span className="text-lime-600 mr-2">•</span>
-                        <span>Build Long Term Relationship</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-lime-600 mr-2">•</span>
-                        <span>Empower People</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-lime-600 mr-2">•</span>
-                        <span>Spread Knowledge</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-lime-600 mr-2">•</span>
-                        <span>Build Trust</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-lime-600 mr-2">•</span>
-                        <span>Delivered Optimal Result</span>
-                      </li>
-                    </ul>
-                  </div>
-                  {/* Connecting line from circle */}
-                  <svg className="absolute hidden lg:block" style={{ right: '24px', bottom: '28px', width: '400px', height: '300px', zIndex: 1 }}>
-                    <path
-                      d="M 0 0 Q -80 -50 -160 -100 L -360 -250"
-                      stroke="#84cc16"
-                      strokeWidth="2"
-                      fill="none"
-                    />
-                  </svg>
-                </div>
+            {/* Values Card */}
+            <div className="bg-green-500 text-white p-8 rounded-2xl shadow-lg relative" data-aos="fade-up" data-aos-delay="300">
+              <div className="absolute -top-5 left-6 bg-white text-green-500 px-3 py-1 text-sm font-semibold rounded-full shadow">
+                Our Values
               </div>
+              <h3 className="text-xl font-bold mb-4">Values</h3>
+              <ul className="list-disc list-inside text-sm space-y-2">
+                <li>Build Long Term Relationships</li>
+                <li>Empower People</li>
+                <li>Spread Knowledge</li>
+                <li>Build Trust</li>
+                <li>Deliver Optimal Results</li>
+              </ul>
             </div>
           </div>
         </div>

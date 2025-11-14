@@ -88,13 +88,24 @@ const SubmitCV = () => {
         if (fileInput) fileInput.value = '';
       }
     } catch (error) {
-      if (error.response?.data?.message) {
+      console.error('CV Submission Error:', error);
+      
+      if (error.code === 'ECONNREFUSED' || error.message === 'Network Error') {
+        setMessage({ 
+          type: 'error', 
+          text: 'Cannot connect to server. Please make sure the backend server is running on port 5000.' 
+        });
+      } else if (error.response?.data?.message) {
         setMessage({ type: 'error', text: error.response.data.message });
       } else if (error.response?.data?.errors) {
         const errorMsg = error.response.data.errors.map(e => e.msg).join(', ');
         setMessage({ type: 'error', text: errorMsg });
+      } else if (error.response?.data?.error) {
+        setMessage({ type: 'error', text: error.response.data.error });
+      } else if (error.message) {
+        setMessage({ type: 'error', text: error.message });
       } else {
-        setMessage({ type: 'error', text: 'Failed to submit CV. Please try again.' });
+        setMessage({ type: 'error', text: 'Failed to submit CV. Please check your connection and try again.' });
       }
     } finally {
       setLoading(false);
@@ -108,7 +119,7 @@ const SubmitCV = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="text-white">
             <span className="text-blue-200">HOME</span>
-            <span className="mx-2">></span>
+            <span className="mx-2">&gt;</span>
             <span>SUBMIT YOUR CV</span>
           </nav>
         </div>

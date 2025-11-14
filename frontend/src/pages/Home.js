@@ -148,11 +148,11 @@ const Home = () => {
       };
 
       // Animate each statistic with slight delays for staggered effect
-      setTimeout(() => animateValue('years', 50), 100);
+      setTimeout(() => animateValue('years', 13), 100);
       setTimeout(() => animateValue('careers', 200), 200);
       setTimeout(() => animateValue('consultants', 150), 300);
       setTimeout(() => animateValue('industries', 21), 400);
-      setTimeout(() => animateValue('offices', 8), 500);
+      setTimeout(() => animateValue('offices', 2), 500);
     }
   }, [statsReveal.isVisible, hasAnimated]);
 
