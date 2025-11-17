@@ -1,7 +1,16 @@
-const nodemailer = require('nodemailer');
+// Optional nodemailer - won't crash if not installed
+let nodemailer = null;
+try {
+  nodemailer = require('nodemailer');
+} catch (error) {
+  console.warn('⚠️ Nodemailer not available - email functionality disabled');
+}
 
 // Create reusable transporter object using SMTP transport
 const createTransporter = () => {
+  if (!nodemailer) {
+    throw new Error('Nodemailer is not installed');
+  }
   // For development, you can use Gmail or any SMTP service
   // For production, use a service like SendGrid, Mailgun, or AWS SES
   
@@ -43,6 +52,11 @@ const createTransporter = () => {
 
 // Send contact form confirmation email to user
 exports.sendContactConfirmation = async (contactData) => {
+  if (!nodemailer) {
+    console.warn('⚠️ Email service not available - nodemailer not installed');
+    return { success: false, error: 'Email service not configured' };
+  }
+  
   try {
     const transporter = createTransporter();
     
@@ -127,6 +141,11 @@ exports.sendContactConfirmation = async (contactData) => {
 
 // Send notification email to admin about new contact
 exports.sendAdminNotification = async (contactData) => {
+  if (!nodemailer) {
+    console.warn('⚠️ Email service not available - nodemailer not installed');
+    return { success: false, error: 'Email service not configured' };
+  }
+  
   try {
     const transporter = createTransporter();
     
