@@ -14,6 +14,25 @@ router.post('/login', [
   body('password').notEmpty()
 ], async (req, res) => {
   try {
+    // Check database connection first
+    if (req.db && req.db.readyState !== 1) {
+      return res.status(503).json({
+        success: false,
+        message: 'Database connection unavailable. Please try again in a few moments.',
+        error: 'Database not connected'
+      });
+    }
+
+    // Check mongoose connection
+    const mongoose = require('mongoose');
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({
+        success: false,
+        message: 'Database connection unavailable. Please try again in a few moments.',
+        error: 'Database not connected'
+      });
+    }
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -76,10 +95,19 @@ router.post('/login', [
       }
     });
   } catch (error) {
+    // Handle database connection errors specifically
+    if (error.name === 'MongoServerError' || error.name === 'MongooseError' || error.message.includes('buffering timed out')) {
+      return res.status(503).json({
+        success: false,
+        message: 'Database connection unavailable. Please try again in a few moments.',
+        error: 'Database connection error'
+      });
+    }
+    
     res.status(500).json({
       success: false,
       message: 'Server error',
-      error: error.message
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 });

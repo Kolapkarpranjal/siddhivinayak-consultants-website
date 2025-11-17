@@ -54,18 +54,45 @@ if (process.env.MONGODB_URI) {
 // Connect to MongoDB with retry logic
 const connectDB = async () => {
   try {
-    await mongoose.connect(mongoURI);
+    await mongoose.connect(mongoURI, {
+      serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+      socketTimeoutMS: 45000, // Close sockets after 45s of inactivity
+    });
     console.log('✅ MongoDB Connected Successfully');
+    console.log(`📊 Database: ${mongoose.connection.name}`);
+    console.log(`🔗 Host: ${mongoose.connection.host}`);
     // Initialize default admin user
     require('./config/initAdmin')();
   } catch (err) {
     console.error('❌ MongoDB Connection Error:', err.message);
-    console.error('📋 Full error details:', err);
-    console.error('\n💡 Troubleshooting tips:');
-    console.error('   1. Check if MongoDB Atlas cluster is running (not paused)');
-    console.error('   2. Verify Network Access allows your IP (or "Allow Access from Anywhere")');
-    console.error('   3. Check username and password in connection string');
-    console.error('   4. Ensure database name is correct: siddhivinayak_db');
+    
+    // Provide specific guidance based on error type
+    if (err.code === 8000 || err.message.includes('Authentication failed') || err.message.includes('bad auth')) {
+      console.error('\n🔐 AUTHENTICATION ERROR - Your username or password is incorrect!');
+      console.error('\n💡 How to fix:');
+      console.error('   1. Go to MongoDB Atlas → Database Access');
+      console.error('   2. Check your database user username');
+      console.error('   3. If you forgot the password, click "Edit" → "Edit Password"');
+      console.error('   4. Update your .env file with the correct credentials');
+      console.error('   5. ⚠️  IMPORTANT: If password has special characters, URL-encode them:');
+      console.error('      - @ → %40');
+      console.error('      - # → %23');
+      console.error('      - % → %25');
+      console.error('      - & → %26');
+      console.error('      - + → %2B');
+      console.error('      - Space → %20 or +');
+      console.error('\n   Example connection string format:');
+      console.error('   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/siddhivinayak_db?retryWrites=true&w=majority');
+    } else {
+      console.error('📋 Full error details:', err);
+      console.error('\n💡 Troubleshooting tips:');
+      console.error('   1. Check if MongoDB Atlas cluster is running (not paused)');
+      console.error('   2. Verify Network Access allows your IP (or "Allow Access from Anywhere")');
+      console.error('   3. Check username and password in connection string');
+      console.error('   4. Ensure database name is correct: siddhivinayak_db');
+      console.error('   5. Verify MONGODB_URI in .env file exists and is correct');
+    }
+    
     console.error('\n⚠️  Server will continue to run, but database operations will fail.');
     console.error('   Retrying connection in 5 seconds...');
     

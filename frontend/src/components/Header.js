@@ -5,6 +5,8 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isJobsDropdownOpen, setIsJobsDropdownOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isMobileJobsOpen, setIsMobileJobsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -24,6 +26,14 @@ const Header = () => {
 
   const toggleServicesDropdown = () => {
     setIsServicesDropdownOpen(!isServicesDropdownOpen);
+  };
+
+  const toggleMobileServices = () => {
+    setIsMobileServicesOpen(!isMobileServicesOpen);
+  };
+
+  const toggleMobileJobs = () => {
+    setIsMobileJobsOpen(!isMobileJobsOpen);
   };
 
   return (
@@ -186,24 +196,39 @@ const Header = () => {
               
               {/* Mobile Services Section */}
               <div className="space-y-2">
-                <div className="text-gray-800 font-medium px-4 py-2">Services</div>
-                <div className="ml-4 space-y-1">
-                  <a href="/services/staff-recruitment" className="block text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
-                    Staff Recruitment
-                  </a>
-                  <a href="/services/staffing" className="block text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
-                    Staffing
-                  </a>
-                  <a href="/services/training" className="block text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
-                    Training
-                  </a>
-                  <a href="/services/resume-building" className="block text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
-                    Resume Building
-                  </a>
-                  <a href="/services/interview-preparation" className="block text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
-                    Interview Preparation
-                  </a>
-                </div>
+                <button
+                  onClick={toggleMobileServices}
+                  className="w-full flex items-center justify-between text-gray-800 font-medium px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm transition duration-300"
+                >
+                  <span>Services</span>
+                  <svg 
+                    className={`w-5 h-5 transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180' : ''}`} 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {isMobileServicesOpen && (
+                  <div className="ml-4 space-y-1 animate-fade-in">
+                    <a href="/services/staff-recruitment" className="block text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
+                      Staff Recruitment
+                    </a>
+                    <a href="/services/staffing" className="block text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
+                      Staffing
+                    </a>
+                    <a href="/services/training" className="block text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
+                      Training
+                    </a>
+                    <a href="/services/resume-building" className="block text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
+                      Resume Building
+                    </a>
+                    <a href="/services/interview-preparation" className="block text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
+                      Interview Preparation
+                    </a>
+                  </div>
+                )}
               </div>
               
               <a href="/about" className="text-gray-700 hover:text-blue-600 font-medium transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
@@ -215,15 +240,30 @@ const Header = () => {
               
               {/* Mobile Jobs Section */}
               <div className="space-y-2">
-                <div className="text-gray-800 font-medium px-4 py-2">Jobs</div>
-                <div className="ml-4 space-y-1">
-                  <a href="/browse-jobs" className="block text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
-                    Browse Jobs
-                  </a>
-                  <a href="/submit-cv" className="block text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
-                    Submit Your CV
-                  </a>
-                </div>
+                <button
+                  onClick={toggleMobileJobs}
+                  className="w-full flex items-center justify-between text-gray-800 font-medium px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm transition duration-300"
+                >
+                  <span>Jobs</span>
+                  <svg 
+                    className={`w-5 h-5 transition-transform duration-300 ${isMobileJobsOpen ? 'rotate-180' : ''}`} 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {isMobileJobsOpen && (
+                  <div className="ml-4 space-y-1 animate-fade-in">
+                    <a href="/browse-jobs" className="block text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
+                      Browse Jobs
+                    </a>
+                    <a href="/submit-cv" className="block text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
+                      Submit Your CV
+                    </a>
+                  </div>
+                )}
               </div>
               
                   <a href="/contact" className="text-gray-700 hover:text-blue-600 font-medium transition duration-300 px-4 py-3 rounded-xl hover:bg-gray-50 hover:shadow-sm">
