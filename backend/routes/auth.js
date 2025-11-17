@@ -25,7 +25,9 @@ router.post('/login', [
 
     // Check mongoose connection
     const mongoose = require('mongoose');
-    if (mongoose.connection.readyState !== 1) {
+    // readyState: 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
+    // Allow connection if it's connected (1) or connecting (2) - connecting means it's in progress
+    if (mongoose.connection.readyState === 0 || mongoose.connection.readyState === 3) {
       return res.status(503).json({
         success: false,
         message: 'Database connection unavailable. Please try again in a few moments.',
