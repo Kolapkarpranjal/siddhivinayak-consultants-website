@@ -43,22 +43,33 @@ if (process.env.MONGODB_URI) {
   console.log('🔗 Connection string:', uriPreview);
 }
 
-mongoose.connect(mongoURI)
-.then(() => {
-  console.log('✅ MongoDB Connected Successfully');
-  // Initialize default admin user
-  require('./config/initAdmin')();
-})
-.catch((err) => {
-  console.error('❌ MongoDB Connection Error:', err.message);
-  console.error('📋 Full error details:', err);
-  console.error('\n💡 Troubleshooting tips:');
-  console.error('   1. Check if MongoDB Atlas cluster is running (not paused)');
-  console.error('   2. Verify Network Access allows your IP (or "Allow Access from Anywhere")');
-  console.error('   3. Check username and password in connection string');
-  console.error('   4. Ensure database name is correct: siddhivinayak_db');
-  process.exit(1);
-});
+// Connect to MongoDB with retry logic
+const connectDB = async () => {
+  try {
+    await mongoose.connect(mongoURI);
+    console.log('✅ MongoDB Connected Successfully');
+    // Initialize default admin user
+    require('./config/initAdmin')();
+  } catch (err) {
+    console.error('❌ MongoDB Connection Error:', err.message);
+    console.error('📋 Full error details:', err);
+    console.error('\n💡 Troubleshooting tips:');
+    console.error('   1. Check if MongoDB Atlas cluster is running (not paused)');
+    console.error('   2. Verify Network Access allows your IP (or "Allow Access from Anywhere")');
+    console.error('   3. Check username and password in connection string');
+    console.error('   4. Ensure database name is correct: siddhivinayak_db');
+    console.error('\n⚠️  Server will continue to run, but database operations will fail.');
+    console.error('   Retrying connection in 5 seconds...');
+    
+    // Retry connection after 5 seconds
+    setTimeout(() => {
+      connectDB();
+    }, 5000);
+  }
+};
+
+// Start MongoDB connection (non-blocking)
+connectDB();
 
 // Root route
 app.get('/', (req, res) => {
@@ -89,9 +100,11 @@ app.use('/api/consultation', consultationRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
+  const dbStatus = mongoose.connection.readyState === 1 ? 'connected' : 'disconnected';
   res.json({ 
     status: 'OK', 
     message: 'Siddhivinayak API is running',
+    database: dbStatus,
     timestamp: new Date().toISOString()
   });
 });
