@@ -7,13 +7,21 @@ const path = require('path');
 // Load environment variables
 dotenv.config();
 
-// Import routes
-const authRoutes = require('./routes/auth');
-const adminRoutes = require('./routes/admin');
-const contactRoutes = require('./routes/contact');
-const cvRoutes = require('./routes/cv');
-const jobRoutes = require('./routes/jobs');
-const consultationRoutes = require('./routes/consultation');
+// Import routes with error handling
+let authRoutes, adminRoutes, contactRoutes, cvRoutes, jobRoutes, consultationRoutes;
+try {
+  authRoutes = require('./routes/auth');
+  adminRoutes = require('./routes/admin');
+  contactRoutes = require('./routes/contact');
+  cvRoutes = require('./routes/cv');
+  jobRoutes = require('./routes/jobs');
+  consultationRoutes = require('./routes/consultation');
+  console.log('✅ All routes loaded successfully');
+} catch (error) {
+  console.error('❌ Error loading routes:', error.message);
+  console.error('📋 Full error:', error);
+  process.exit(1);
+}
 
 const app = express();
 
