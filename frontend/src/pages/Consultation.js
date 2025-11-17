@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import API_URL from '../config/api';
 import heroImage from '../assets/images/hero/hero.jpg';
 
 const Consultation = () => {
@@ -10,19 +12,75 @@ const Consultation = () => {
     service: '',
     message: ''
   });
+  const [loading, setLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Clear status message when user starts typing
+    if (submitStatus.message) {
+      setSubmitStatus({ type: '', message: '' });
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Consultation form submitted:', formData);
-    alert('Thank you for your consultation request! We will contact you within 24 hours.');
+    setLoading(true);
+    setSubmitStatus({ type: '', message: '' });
+
+    try {
+      const response = await axios.post(`${API_URL}/api/consultation`, formData);
+      
+      if (response.data.success) {
+        setSubmitStatus({
+          type: 'success',
+          message: response.data.message || 'Thank you for your consultation request! We will contact you within 24 hours.'
+        });
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          service: '',
+          message: ''
+        });
+        // Clear success message after 5 seconds
+        setTimeout(() => {
+          setSubmitStatus({ type: '', message: '' });
+        }, 5000);
+      }
+    } catch (error) {
+      console.error('Consultation form error:', error);
+      if (error.response?.data?.errors) {
+        // Validation errors from backend
+        const errorMessages = error.response.data.errors.map(err => err.msg).join(', ');
+        setSubmitStatus({
+          type: 'error',
+          message: errorMessages
+        });
+      } else if (error.response?.data?.message) {
+        setSubmitStatus({
+          type: 'error',
+          message: error.response.data.message
+        });
+      } else if (error.code === 'ECONNREFUSED' || error.message === 'Network Error') {
+        setSubmitStatus({
+          type: 'error',
+          message: 'Cannot connect to server. Please make sure the backend server is running.'
+        });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: 'Failed to submit consultation request. Please try again later.'
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const consultationSteps = [
@@ -93,7 +151,7 @@ const Consultation = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div id="consultation-form" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 min-h-[600px]">
           {/* Left Section - Get Expert Advice */}
           <div className="bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center">
@@ -159,13 +217,152 @@ const Consultation = () => {
               </div>
             </div>
             
-            {/* CTA Button */}
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition duration-300 transform hover:scale-105 flex items-center justify-center space-x-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <span>Schedule Free Consultation</span>
-            </button>
+            {/* Consultation Form */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Status Messages */}
+              {submitStatus.message && (
+                <div className={`p-4 rounded-lg ${
+                  submitStatus.type === 'success' 
+                    ? 'bg-green-50 text-green-800 border border-green-200' 
+                    : 'bg-red-50 text-red-800 border border-red-200'
+                }`}>
+                  <div className="flex items-center space-x-2">
+                    {submitStatus.type === 'success' ? (
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    ) : (
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                    <p className="text-sm font-medium">{submitStatus.message}</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Name */}
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                  Full Name <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  placeholder="Enter your full name"
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  Email Address <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+
+              {/* Phone */}
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  placeholder="123-456-7890"
+                />
+              </div>
+
+              {/* Company */}
+              <div>
+                <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
+                  Company Name
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  placeholder="Your company name"
+                />
+              </div>
+
+              {/* Service */}
+              <div>
+                <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1">
+                  Service Interested In
+                </label>
+                <input
+                  type="text"
+                  id="service"
+                  name="service"
+                  value={formData.service}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  placeholder="e.g., Staffing, Training, Recruitment"
+                />
+              </div>
+
+              {/* Message */}
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows="4"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  placeholder="Tell us about your business needs..."
+                />
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-4 px-6 rounded-lg transition duration-300 transform hover:scale-105 disabled:transform-none flex items-center justify-center space-x-2"
+              >
+                {loading ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>Submitting...</span>
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span>Schedule Free Consultation</span>
+                  </>
+                )}
+              </button>
+            </form>
           </div>
           
           {/* Right Section - Why Choose Our Consultation */}
@@ -270,9 +467,12 @@ const Consultation = () => {
           <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
             Don't wait any longer. Schedule your free consultation today and take the first step towards achieving your business goals.
           </p>
-          <button className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg transition duration-300 transform hover:scale-105">
+          <a 
+            href="#consultation-form" 
+            className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg transition duration-300 transform hover:scale-105 inline-block"
+          >
             Schedule Consultation Now
-          </button>
+          </a>
         </div>
       </section>
     </div>

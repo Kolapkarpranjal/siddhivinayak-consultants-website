@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import API_URL from '../config/api';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -7,19 +9,73 @@ const Contact = () => {
     phone: '',
     message: ''
   });
+  const [loading, setLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Clear status message when user starts typing
+    if (submitStatus.message) {
+      setSubmitStatus({ type: '', message: '' });
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
+    setLoading(true);
+    setSubmitStatus({ type: '', message: '' });
+
+    try {
+      const response = await axios.post(`${API_URL}/api/contact`, formData);
+      
+      if (response.data.success) {
+        setSubmitStatus({
+          type: 'success',
+          message: response.data.message || 'Thank you for your message! We will get back to you soon.'
+        });
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+        // Clear success message after 5 seconds
+        setTimeout(() => {
+          setSubmitStatus({ type: '', message: '' });
+        }, 5000);
+      }
+    } catch (error) {
+      console.error('Contact form error:', error);
+      if (error.response?.data?.errors) {
+        // Validation errors from backend
+        const errorMessages = error.response.data.errors.map(err => err.msg).join(', ');
+        setSubmitStatus({
+          type: 'error',
+          message: errorMessages
+        });
+      } else if (error.response?.data?.message) {
+        setSubmitStatus({
+          type: 'error',
+          message: error.response.data.message
+        });
+      } else if (error.code === 'ECONNREFUSED' || error.message === 'Network Error') {
+        setSubmitStatus({
+          type: 'error',
+          message: 'Cannot connect to server. Please make sure the backend server is running.'
+        });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: 'Failed to send message. Please try again later.'
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const avatars = [
@@ -114,33 +170,112 @@ const Contact = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Status Messages */}
+              {submitStatus.message && (
+                <div className={`p-4 rounded-lg ${
+                  submitStatus.type === 'success' 
+                    ? 'bg-green-50 text-green-800 border border-green-200' 
+                    : 'bg-red-50 text-red-800 border border-red-200'
+                }`}>
+                  <div className="flex items-center">
+                    {submitStatus.type === 'success' ? (
+                      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    ) : (
+                      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                    <span className="text-sm font-medium">{submitStatus.message}</span>
+                  </div>
+                </div>
+              )}
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm text-gray-600 mb-2">Full name *</label>
-                  <input type="text" name="name" value={formData.name} onChange={handleChange} required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Your name" />
+                  <input 
+                    type="text" 
+                    name="name" 
+                    value={formData.name} 
+                    onChange={handleChange} 
+                    required 
+                    disabled={loading}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed" 
+                    placeholder="Your name" 
+                  />
                 </div>
                 <div>
                   <label className="block text-sm text-gray-600 mb-2">Phone</label>
-                  <input type="tel" name="phone" value={formData.phone} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="(+91)" />
+                  <input 
+                    type="tel" 
+                    name="phone" 
+                    value={formData.phone} 
+                    onChange={handleChange} 
+                    disabled={loading}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed" 
+                    placeholder="(+91)" 
+                  />
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm text-gray-600 mb-2">Email *</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="you@company.com" />
+                <input 
+                  type="email" 
+                  name="email" 
+                  value={formData.email} 
+                  onChange={handleChange} 
+                  required 
+                  disabled={loading}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed" 
+                  placeholder="you@company.com" 
+                />
               </div>
 
               <div>
                 <label className="block text-sm text-gray-600 mb-2">Message *</label>
-                <textarea name="message" rows="4" value={formData.message} onChange={handleChange} required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Tell us how we can help…" />
+                <textarea 
+                  name="message" 
+                  rows="4" 
+                  value={formData.message} 
+                  onChange={handleChange} 
+                  required 
+                  disabled={loading}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed" 
+                  placeholder="Tell us how we can help…" 
+                />
               </div>
 
               <div className="flex items-start space-x-3">
-                <input id="agree" type="checkbox" className="mt-1 w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                <input 
+                  id="agree" 
+                  type="checkbox" 
+                  required
+                  disabled={loading}
+                  className="mt-1 w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 disabled:cursor-not-allowed" 
+                />
                 <label htmlFor="agree" className="text-sm text-gray-600">You agree to our friendly privacy policy.</label>
               </div>
 
-              <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors">Send message</button>
+              <button 
+                type="submit" 
+                disabled={loading}
+                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg transition-colors flex items-center justify-center"
+              >
+                {loading ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending...
+                  </>
+                ) : (
+                  'Send message'
+                )}
+              </button>
             </form>
           </div>
         </div>

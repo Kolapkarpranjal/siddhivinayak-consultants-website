@@ -69,14 +69,18 @@ const About = () => {
   ];
 
   const offices = [
-    { city: "Mumbai", address: "Nariman Point, Mumbai" },
-    { city: "Delhi", address: "Connaught Place, New Delhi" },
-    { city: "Bangalore", address: "MG Road, Bangalore" },
-    { city: "Chennai", address: "Anna Salai, Chennai" },
-    { city: "Kolkata", address: "Park Street, Kolkata" },
-    { city: "Hyderabad", address: "Banjara Hills, Hyderabad" },
-    { city: "Pune", address: "Koregaon Park, Pune" },
-    { city: "Ahmedabad", address: "CG Road, Ahmedabad" }
+    { 
+      city: "Sinnar", 
+      address: "Office No -3, Chaitnya Vilas Apartment, Chhatrapati Chauk, Shivaji Nagar, Sinnar, Maharashtra (India)",
+      phone: "+91-777-481-1211",
+      email: "sinnar@siddhivinayakemployment.com"
+    },
+    { 
+      city: "Nashik", 
+      address: "Siddhivinayak Employment Services, Shop NO. 315, 3rd Floor, Roongta Majestic Apartment, Kamod Nagar, Nashik – 422009, Maharashtra",
+      phone: "+91-777-481-1211",
+      email: "nashik@siddhivinayakemployment.com"
+    }
   ];
 
   return (
@@ -415,19 +419,81 @@ const About = () => {
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {offices.map((office, index) => (
-              <div key={index} className="bg-gray-50 rounded-lg p-6 text-center hover:bg-gray-100 transition duration-300" data-aos="zoom-in" data-aos-delay={index * 100}>
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {offices.map((office, index) => {
+              const isBlue = index === 0;
+              
+              return (
+                <div 
+                  key={index} 
+                  className={`bg-gradient-to-br ${isBlue ? 'from-blue-50 via-cyan-50 to-transparent' : 'from-purple-50 via-pink-50 to-transparent'} rounded-xl shadow-xl border-2 ${isBlue ? 'border-blue-300' : 'border-purple-300'} p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group`}
+                  data-aos="fade-up" 
+                  data-aos-delay={index * 150}
+                >
+                  {/* Animated background gradient overlay */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${isBlue ? 'from-blue-600 via-blue-500 to-cyan-500' : 'from-purple-600 via-purple-500 to-pink-500'} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-xl`}></div>
+                  
+                  {/* Animated border glow */}
+                  <div className={`absolute inset-0 rounded-xl border-2 ${isBlue ? 'border-blue-300' : 'border-purple-300'} opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse`}></div>
+                  
+                  <div className="relative z-10 flex items-start space-x-4">
+                    <div className="flex-shrink-0">
+                      <div className={`w-16 h-16 ${isBlue ? 'bg-gradient-to-br from-blue-600 to-cyan-500' : 'bg-gradient-to-br from-purple-600 to-pink-500'} rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 relative`}>
+                        {/* Pulsing ring animation */}
+                        <div className={`absolute inset-0 rounded-lg ${isBlue ? 'bg-cyan-500' : 'bg-pink-500'} animate-ping opacity-75`}></div>
+                        <svg className="w-8 h-8 text-white relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className={`text-2xl font-bold text-gray-900 mb-4 ${isBlue ? 'group-hover:text-blue-600' : 'group-hover:text-purple-600'} transition-colors duration-300`}>
+                        {office.city} Office
+                      </h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start space-x-3 group-hover:translate-x-1 transition-transform duration-300">
+                          <svg className={`w-5 h-5 ${isBlue ? 'text-blue-600' : 'text-purple-600'} mt-0.5 flex-shrink-0 group-hover:scale-125 transition-transform duration-300`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          <p className="text-gray-700 leading-relaxed font-medium">{office.address}</p>
+                        </div>
+                        {office.phone && (
+                          <div className="flex items-center space-x-3 group-hover:translate-x-1 transition-transform duration-300">
+                            <div className="relative">
+                              <svg className={`w-5 h-5 ${isBlue ? 'text-blue-600' : 'text-purple-600'} flex-shrink-0 group-hover:scale-125 transition-transform duration-300`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                              </svg>
+                              <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            </div>
+                            <a href={`tel:${office.phone.replace(/\s+/g, '')}`} className={`${isBlue ? 'text-blue-600 hover:text-blue-700' : 'text-purple-600 hover:text-purple-700'} font-semibold hover:underline transition-all duration-300`}>
+                              {office.phone}
+                            </a>
+                          </div>
+                        )}
+                        {office.email && (
+                          <div className="flex items-center space-x-3 group-hover:translate-x-1 transition-transform duration-300">
+                            <svg className={`w-5 h-5 ${isBlue ? 'text-blue-600' : 'text-purple-600'} flex-shrink-0 group-hover:scale-125 transition-transform duration-300`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <a href={`mailto:${office.email}`} className={`${isBlue ? 'text-blue-600 hover:text-blue-700' : 'text-purple-600 hover:text-purple-700'} font-semibold hover:underline transition-all duration-300`}>
+                              {office.email}
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Decorative corner element */}
+                  <div className={`absolute top-0 right-0 w-24 h-24 ${isBlue ? 'bg-blue-100' : 'bg-purple-100'} rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                  
+                  {/* Bottom accent line */}
+                  <div className={`absolute bottom-0 left-0 right-0 h-1 ${isBlue ? 'bg-gradient-to-r from-blue-600 to-cyan-500' : 'bg-gradient-to-r from-purple-600 to-pink-500'} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-b-xl`}></div>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{office.city}</h3>
-                <p className="text-gray-600 text-sm">{office.address}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Layout = ({ children }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  // Sidebar starts closed on mobile, open on desktop
+  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 1024);
   const [profileDropdown, setProfileDropdown] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,6 +21,7 @@ const Layout = ({ children }) => {
     { path: '/admin/jobs', label: 'JOBS', icon: '💼' },
     { path: '/admin/cvs', label: 'RESUMES', icon: '📄' },
     { path: '/admin/contacts', label: 'TASKS', icon: '✓' },
+    { path: '/admin/consultations', label: 'CONSULTATIONS', icon: '💬' },
   ];
 
   const adminMenuItems = [
@@ -80,6 +82,12 @@ const Layout = ({ children }) => {
                 <Link
                   key={item.path}
                   to={item.path}
+                  onClick={() => {
+                    // Close sidebar on mobile after navigation
+                    if (window.innerWidth < 1024) {
+                      setSidebarOpen(false);
+                    }
+                  }}
                   className={`relative flex items-center px-4 py-3 text-sm font-medium transition-colors ${
                     location.pathname === item.path
                       ? 'text-white bg-blue-800'
@@ -101,6 +109,12 @@ const Layout = ({ children }) => {
                 <Link
                   key={item.path}
                   to={item.path}
+                  onClick={() => {
+                    // Close sidebar on mobile after navigation
+                    if (window.innerWidth < 1024) {
+                      setSidebarOpen(false);
+                    }
+                  }}
                   className={`relative flex items-center px-4 py-3 text-sm font-medium transition-colors ${
                     location.pathname === item.path
                       ? 'text-white bg-blue-800'

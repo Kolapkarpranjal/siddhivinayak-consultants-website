@@ -4,6 +4,7 @@ const Contact = require('../models/Contact');
 const CV = require('../models/CV');
 const Job = require('../models/Job');
 const User = require('../models/User');
+const Consultation = require('../models/Consultation');
 
 const router = express.Router();
 
@@ -45,6 +46,51 @@ router.get('/dashboard', async (req, res) => {
       .limit(5)
       .select('firstName lastName email position status createdAt');
 
+    // Get daily statistics for last 14 days (including today)
+    const dailyStats = [];
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    
+    // Start from 13 days ago and go up to today (14 days total)
+    for (let i = 13; i >= 0; i--) {
+      const date = new Date(today);
+      date.setDate(date.getDate() - i);
+      const nextDate = new Date(date);
+      nextDate.setDate(nextDate.getDate() + 1);
+      
+      // For today, use current time instead of end of day
+      const endDate = i === 0 ? now : nextDate;
+      
+      const [contactsCount, cvsCount, consultationsCount] = await Promise.all([
+        Contact.countDocuments({
+          createdAt: {
+            $gte: date,
+            $lt: endDate
+          }
+        }),
+        CV.countDocuments({
+          createdAt: {
+            $gte: date,
+            $lt: endDate
+          }
+        }),
+        Consultation.countDocuments({
+          createdAt: {
+            $gte: date,
+            $lt: endDate
+          }
+        })
+      ]);
+      
+      dailyStats.push({
+        date: date.toISOString().split('T')[0],
+        contacts: contactsCount,
+        cvs: cvsCount,
+        consultations: consultationsCount,
+        total: contactsCount + cvsCount + consultationsCount
+      });
+    }
+
     res.json({
       success: true,
       data: {
@@ -68,7 +114,8 @@ router.get('/dashboard', async (req, res) => {
         recent: {
           contacts: recentContacts,
           cvs: recentCVs
-        }
+        },
+        dailyStats
       }
     });
   } catch (error) {
@@ -212,6 +259,74 @@ router.put('/cvs/:id', async (req, res) => {
     res.json({
       success: true,
       data: cv
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Server error',
+      error: error.message
+    });
+  }
+});
+
+// @route   GET /api/admin/consultations
+// @desc    Get all consultations
+// @access  Private/Admin
+router.get('/consultations', async (req, res) => {
+  try {
+    const { status, page = 1, limit = 10 } = req.query;
+    const query = status ? { status } : {};
+
+    const consultations = await Consultation.find(query)
+      .sort({ createdAt: -1 })
+      .limit(limit * 1)
+      .skip((page - 1) * limit);
+
+    const total = await Consultation.countDocuments(query);
+
+    res.json({
+      success: true,
+      data: {
+        consultations,
+        pagination: {
+          page: parseInt(page),
+          limit: parseInt(limit),
+          total,
+          pages: Math.ceil(total / limit)
+        }
+      }
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Server error',
+      error: error.message
+    });
+  }
+});
+
+// @route   PUT /api/admin/consultations/:id
+// @desc    Update consultation status
+// @access  Private/Admin
+router.put('/consultations/:id', async (req, res) => {
+  try {
+    const { status, isRead, scheduledAt } = req.body;
+    const consultation = await Consultation.findByIdAndUpdate(
+      req.params.id,
+      { status, isRead, scheduledAt },
+      { new: true, runValidators: true }
+    );
+
+    if (!consultation) {
+      return res.status(404).json({
+        success: false,
+        message: 'Consultation not found'
+      });
+    }
+
+    res.json({
+      success: true,
+      data: consultation
     });
   } catch (error) {
     res.status(500).json({

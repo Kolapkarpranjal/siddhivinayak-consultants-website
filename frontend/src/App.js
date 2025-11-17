@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -24,6 +25,7 @@ import AdminDashboard from './pages/admin/Dashboard';
 import AdminContacts from './pages/admin/Contacts';
 import AdminCVs from './pages/admin/CVs';
 import AdminJobs from './pages/admin/Jobs';
+import AdminConsultations from './pages/admin/Consultations';
 import './App.css';
 
 function App() {
@@ -39,6 +41,7 @@ function App() {
         <Route path="/admin/contacts" element={<AdminContacts />} />
         <Route path="/admin/cvs" element={<AdminCVs />} />
         <Route path="/admin/jobs" element={<AdminJobs />} />
+        <Route path="/admin/consultations" element={<AdminConsultations />} />
         
         {/* Public Routes (with Header/Footer) */}
         <Route path="/*" element={
@@ -65,6 +68,18 @@ function App() {
           </div>
         } />
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Router>
   );
 }

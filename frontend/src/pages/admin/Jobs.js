@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import Layout from '../../components/admin/Layout';
 import API_URL from '../../config/api';
 
@@ -10,6 +11,8 @@ const Jobs = () => {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [editingJob, setEditingJob] = useState(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [jobToDelete, setJobToDelete] = useState(null);
   
   // Filters and Search
   const [statusFilter, setStatusFilter] = useState('all');
@@ -121,6 +124,9 @@ const Jobs = () => {
       if (error.response?.status === 401) {
         localStorage.removeItem('token');
         navigate('/admin/login');
+        toast.error('Session expired. Please login again.');
+      } else {
+        toast.error('Failed to fetch jobs');
       }
     } finally {
       setLoading(false);
@@ -153,9 +159,10 @@ const Jobs = () => {
       setShowModal(false);
       setEditingJob(null);
       resetForm();
+      toast.success(editingJob ? 'Job updated successfully' : 'Job created successfully');
       fetchJobs();
     } catch (error) {
-      alert('Failed to save job');
+      toast.error('Failed to save job');
     }
   };
 
@@ -209,23 +216,38 @@ const Jobs = () => {
       );
       fetchJobs();
     } catch (error) {
-      alert('Failed to duplicate job');
+      toast.error('Failed to duplicate job');
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this job?')) return;
+  const handleDeleteClick = (id) => {
+    setJobToDelete(id);
+    setShowDeleteConfirm(true);
+  };
 
+  const handleDeleteConfirm = async () => {
+    if (!jobToDelete) return;
+    
     try {
       const token = localStorage.getItem('token');
       await axios.delete(
-        `${API_URL}/api/admin/jobs/${id}`,
+        `${API_URL}/api/admin/jobs/${jobToDelete}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
+      toast.success('Job deleted successfully');
       fetchJobs();
+      setShowDeleteConfirm(false);
+      setJobToDelete(null);
     } catch (error) {
-      alert('Failed to delete job');
+      toast.error('Failed to delete job');
+      setShowDeleteConfirm(false);
+      setJobToDelete(null);
     }
+  };
+
+  const handleDeleteCancel = () => {
+    setShowDeleteConfirm(false);
+    setJobToDelete(null);
   };
 
   const handleToggleStatus = async (id) => {
@@ -238,7 +260,7 @@ const Jobs = () => {
       );
       fetchJobs();
     } catch (error) {
-      alert('Failed to toggle status');
+      toast.error('Failed to toggle status');
     }
   };
 
@@ -493,7 +515,7 @@ const Jobs = () => {
                               🔄 Toggle
                             </button>
                             <button
-                              onClick={() => handleDelete(job._id)}
+                              onClick={() => handleDeleteClick(job._id)}
                               className="text-red-600 hover:text-red-800 font-medium"
                               title="Delete"
                             >
@@ -650,6 +672,32 @@ const Jobs = () => {
                     </button>
                   </div>
                 </form>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Delete Confirmation Dialog */}
+        {showDeleteConfirm && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+              <h3 className="text-lg font-bold text-gray-900 mb-4">Confirm Delete</h3>
+              <p className="text-gray-600 mb-6">
+                Are you sure you want to delete this job? This action cannot be undone.
+              </p>
+              <div className="flex justify-end space-x-3">
+                <button
+                  onClick={handleDeleteCancel}
+                  className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleDeleteConfirm}
+                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </div>

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import slider1 from '../assets/images/hero/slider1.jpg';
 import slider2 from '../assets/images/hero/slider2.jpg';
-import peoples from '../assets/images/hero/peoples.png';
 
 // Simple intersection observer hook for reveal-on-scroll animations
 function useReveal() {
@@ -216,7 +215,6 @@ const Home = () => {
           <div className="absolute inset-0 bg-black/50" />
         </div>
         
-        
         {/* Hero Content */}
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           {/* Premium Business Consulting Banner */}
@@ -353,19 +351,144 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Our People Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out" style={{}}>
-          <div className="text-center">
+      {/* Our Features Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Our People
+              Our Features
             </h2>
             <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-              The Executive Search industry's most seasoned consultants, bringing an agile mindset, an empathetic perspective and an entrepreneurial spirit to every client engagement.
+              Discover what makes us the preferred choice for recruitment solutions
             </p>
           </div>
-          <div className="mt-10 rounded-2xl overflow-hidden shadow-md">
-            <img src={peoples} alt="Our People" className="w-full h-auto object-cover" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Feature 1 */}
+            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-bl-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                  Extensive CV Database
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  We have <span className="font-semibold text-blue-600">4,50,000 soft CV's</span> & additional sources to find the perfect candidate for your needs.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-bl-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
+                  Expert Recruiter Team
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  We have a team of <span className="font-semibold text-purple-600">8 skilled recruiters</span> who continuously work on vacant positions to ensure timely placements.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-bl-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors">
+                  Focused Attention
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  After receiving the vacancy, we focus <span className="font-semibold text-emerald-600">all our attention</span> on the same task to deliver the best results.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 4 */}
+            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-bl-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors">
+                  Fast Lead Time
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Our lead time is <span className="font-semibold text-orange-600">16:00 hrs</span>. We provide you a profile matching CV's against requirements quickly.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 5 */}
+            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-bl-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors">
+                  Comprehensive Background Check
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  We do <span className="font-semibold text-indigo-600">full background check</span> of candidates, verify location suitability for outside candidates & understand the reason for job change.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 6 */}
+            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-pink-500 to-rose-500 rounded-bl-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors">
+                  Advanced Head Hunting
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  We can provide <span className="font-semibold text-pink-600">good candidates by Head Hunting in Advance</span>. All these screening tasks are performed by us.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 7 */}
+            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 md:col-span-2 lg:col-span-1">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-bl-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-cyan-600 transition-colors">
+                  End-to-End Support
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  We do <span className="font-semibold text-cyan-600">all formalities of candidates from Interview to joining</span>, ensuring a smooth onboarding process.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -581,7 +704,7 @@ const Home = () => {
               </svg>
             </button>
             
-            {/* Services Cards */}
+            {/* Services Cards with Professional Image Animations */}
             <div className="overflow-hidden px-4 sm:px-8">
               <div 
                 className="flex transition-transform duration-500 ease-in-out"
@@ -595,28 +718,51 @@ const Home = () => {
                     key={index}
                     className="flex-shrink-0 w-full sm:w-1/3 px-2"
                   >
-                    <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
-                      {/* Service Image */}
-                      <div className="h-32 sm:h-40 overflow-hidden">
+                    <div className="w-full bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-2xl transform hover:-translate-y-3 group">
+                      {/* Professional Image Section with Animation */}
+                      <div className="relative h-56 sm:h-64 overflow-hidden bg-gray-100">
+                        {/* Image with Zoom Animation */}
+                        <div className="absolute inset-0">
                         <img 
                           src={service.image} 
                           alt={service.title}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
+                          {/* Overlay Gradient */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      </div>
+                      
+                        {/* Professional Badge/Icon Overlay */}
+                        <div className="absolute top-4 right-4 transform translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 delay-100">
+                          <div className="w-12 h-12 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl flex items-center justify-center">
+                            <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                          </div>
+                        </div>
+                        
+                        {/* Service Title Overlay */}
+                        <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                          <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 drop-shadow-lg">
+                          {service.title}
+                        </h3>
+                          <div className="w-12 h-1 bg-white rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-200 origin-left"></div>
+                        </div>
                       </div>
                       
                       {/* Service Content */}
-                      <div className="p-3 sm:p-4">
-                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">
-                          {service.title}
-                        </h3>
-                        <p className="text-gray-600 mb-3 leading-relaxed text-xs sm:text-sm">
+                      <div className="p-6">
+                        <p className="text-gray-600 mb-6 leading-relaxed text-sm sm:text-base line-clamp-3">
                           {service.description}
                         </p>
                         
-                        {/* Action Button */}
-                        <button onClick={() => navigate(`/services/${slugify(service.title)}`)} className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition duration-300 transform hover:scale-110">
-                          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {/* Professional Action Button */}
+                        <button 
+                          onClick={() => navigate(`/services/${slugify(service.title)}`)} 
+                          className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center space-x-2 shadow-md hover:shadow-lg group/btn"
+                        >
+                          <span>Explore Service</span>
+                          <svg className="w-5 h-5 transform group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </button>
@@ -653,84 +799,90 @@ const Home = () => {
       </section>
       
       {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Testimonials</h2>
-            <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Client Testimonials</h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
               Our constant endeavor is to delight our clients through service excellence
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Testimonial Card 1 - Ashutosh Sharma */}
-            <div className="rounded-2xl border-8 border-blue-100 transition-transform duration-300 hover:-translate-y-1 hover:border-blue-200">
-              <div className="relative bg-white rounded-xl p-8 shadow-md transition-shadow duration-300 hover:shadow-2xl">
-                <div className="absolute top-4 right-4 text-blue-200">
-                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h4a4 4 0 010 8H7V8zm10 0h-4a4 4 0 000 8h4V8z" />
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              {/* Quote Icon */}
+              <div className="mb-6">
+                <svg className="w-12 h-12 text-blue-600 opacity-20" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.985zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                   </svg>
                 </div>
-                <div className="flex items-center mb-4">
-                  <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                    <svg className="w-8 h-8 text-blue-600" viewBox="0 0 20 20" fill="currentColor"><path d="M2 10a8 8 0 1116 0A8 8 0 012 10zm7-3a1 1 0 012 0v3a1 1 0 01-1 1H7a1 1 0 110-2h2V7z"/></svg>
-                  </div>
-                  <div className="text-blue-700 font-semibold">Client Testimonial</div>
+              
+              {/* Testimonial Text */}
+              <p className="text-gray-700 leading-relaxed mb-8 text-base">
+                "We are associated with Siddhivinayak Employment services since 7 Years and the quality of the candidates that they have provided has been very good and the kind of quality process and everything during recruitment process and selection process has been very good with them. I really Recommend that we should really work with this people and my best wishes to them."
+              </p>
+              
+              {/* Client Info */}
+              <div className="flex items-center pt-6 border-t border-gray-100">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="text-white font-semibold text-lg">AS</span>
                 </div>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  We are associated with Siddhivinayak Employment services since 7 Years and the quality of the candidates that they have provided has been very good and the kind of quality process and everything during recruitment process and selection process has been very good with them. I really Recommend that we should really work with this people and my best wishes to them.
-                </p>
-                <div className="mt-6 pt-4 border-t border-gray-200">
-                  <div className="font-semibold text-gray-900">Ashutosh Sharma</div>
-                  <div className="text-sm text-gray-600">Chief Administration Officer</div>
+                <div>
+                  <div className="font-semibold text-gray-900 text-base">Ashutosh Sharma</div>
+                  <div className="text-sm text-gray-500">Chief Administration Officer</div>
                 </div>
               </div>
             </div>
 
             {/* Testimonial Card 2 - Rahul Shukla */}
-            <div className="rounded-2xl border-8 border-blue-100 transition-transform duration-300 hover:-translate-y-1 hover:border-blue-200">
-              <div className="relative bg-white rounded-xl p-8 shadow-md transition-shadow duration-300 hover:shadow-2xl">
-                <div className="absolute top-4 right-4 text-blue-200">
-                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h4a4 4 0 010 8H7V8zm10 0h-4a4 4 0 000 8h4V8z" />
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              {/* Quote Icon */}
+              <div className="mb-6">
+                <svg className="w-12 h-12 text-blue-600 opacity-20" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.985zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                   </svg>
                 </div>
-                <div className="flex items-center mb-4">
-                  <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                    <svg className="w-8 h-8 text-blue-600" viewBox="0 0 20 20" fill="currentColor"><path d="M2 10a8 8 0 1116 0A8 8 0 012 10zm7-3a1 1 0 012 0v3a1 1 0 01-1 1H7a1 1 0 110-2h2V7z"/></svg>
-                  </div>
-                  <div className="text-blue-700 font-semibold">Client Testimonial</div>
+              
+              {/* Testimonial Text */}
+              <p className="text-gray-700 leading-relaxed mb-8 text-base">
+                "We are working with SES from last 10 Years and what we have observed is that they are adding new strategies to their services and there is continues improvement."
+              </p>
+              
+              {/* Client Info */}
+              <div className="flex items-center pt-6 border-t border-gray-100">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="text-white font-semibold text-lg">RS</span>
                 </div>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  We are working with SES from last 10 Years and what we have observed is that they are adding new strategies to their services and there is continues improvement.
-                </p>
-                <div className="mt-6 pt-4 border-t border-gray-200">
-                  <div className="font-semibold text-gray-900">Rahul Shukla</div>
-                  <div className="text-sm text-gray-600">HR Manager (Electronica Tungsten Limited)</div>
+                <div>
+                  <div className="font-semibold text-gray-900 text-base">Rahul Shukla</div>
+                  <div className="text-sm text-gray-500">HR Manager (Electronica Tungsten Limited)</div>
                 </div>
               </div>
             </div>
 
             {/* Testimonial Card 3 - Prabhakar Bodke */}
-            <div className="rounded-2xl border-8 border-blue-100 transition-transform duration-300 hover:-translate-y-1 hover:border-blue-200">
-              <div className="relative bg-white rounded-xl p-8 shadow-md transition-shadow duration-300 hover:shadow-2xl">
-                <div className="absolute top-4 right-4 text-blue-200">
-                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h4a4 4 0 010 8H7V8zm10 0h-4a4 4 0 000 8h4V8z" />
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              {/* Quote Icon */}
+              <div className="mb-6">
+                <svg className="w-12 h-12 text-blue-600 opacity-20" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.985zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                   </svg>
                 </div>
-                <div className="flex items-center mb-4">
-                  <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                    <svg className="w-8 h-8 text-blue-600" viewBox="0 0 20 20" fill="currentColor"><path d="M2 10a8 8 0 1116 0A8 8 0 012 10zm7-3a1 1 0 012 0v3a1 1 0 01-1 1H7a1 1 0 110-2h2V7z"/></svg>
-                  </div>
-                  <div className="text-blue-700 font-semibold">Client Testimonial</div>
+              
+              {/* Testimonial Text */}
+              <p className="text-gray-700 leading-relaxed mb-8 text-base">
+                "SES is one of the good and leading company, working with me and my organisation since 7 Years during this journey I realise that SES has good databank for all level of positions they are providing all skilful and experience candidates. They also provide candidates within short period of time."
+              </p>
+              
+              {/* Client Info */}
+              <div className="flex items-center pt-6 border-t border-gray-100">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="text-white font-semibold text-lg">PB</span>
                 </div>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  SES is one of the good and leading company, working with me and my organisation since 7 Years during this journey I realise that SES has good databank for all level of positions they are providing all skilful and experience candidates. They also provide candidates within short period of time.
-                </p>
-                <div className="mt-6 pt-4 border-t border-gray-200">
-                  <div className="font-semibold text-gray-900">Prabhakar Bodke</div>
-                  <div className="text-sm text-gray-600">HR Manager (Nirmiti Precision Pvt Ltd)</div>
+                <div>
+                  <div className="font-semibold text-gray-900 text-base">Prabhakar Bodke</div>
+                  <div className="text-sm text-gray-500">HR Manager (Nirmiti Precision Pvt Ltd)</div>
                 </div>
               </div>
             </div>

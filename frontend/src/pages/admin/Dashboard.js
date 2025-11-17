@@ -21,9 +21,12 @@ const Dashboard = () => {
       });
 
       if (response.data.success) {
+        console.log('Dashboard data received:', response.data.data);
+        console.log('Daily stats:', response.data.data.dailyStats);
         setStats(response.data.data);
       }
     } catch (error) {
+      console.error('Dashboard fetch error:', error);
       if (error.response?.status === 401) {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
@@ -138,35 +141,87 @@ const Dashboard = () => {
 
               {/* Applicants/Day Chart */}
               <div className="mt-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">APPLICANTS/DAY</h3>
-                <div className="relative h-64">
-                  <div className="absolute inset-0 flex items-end justify-between space-x-1">
-                    {[50, 120, 180, 200, 150, 100, 80, 90, 130, 190, 210, 160, 110, 85].map((height, index) => (
-                      <div
-                        key={index}
-                        className="flex-1 bg-teal-500 rounded-t hover:bg-teal-600 transition-colors relative group"
-                        style={{ height: `${(height / 250) * 100}%` }}
-                      >
-                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                          {height} Applicants
-                        </div>
-                      </div>
-                    ))}
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">APPLICANTS/DAY (Last 14 Days)</h3>
+                {stats.dailyStats && stats.dailyStats.length > 0 ? (
+                  <div className="relative h-64 border border-gray-200 rounded-lg bg-gray-50 p-4">
+                    {(() => {
+                      const totals = stats.dailyStats.map(d => d.total);
+                      const maxValue = Math.max(...totals, 1);
+                      const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                      
+                      return (
+                        <>
+                          {/* Y-axis labels */}
+                          <div className="absolute left-0 top-0 bottom-12 flex flex-col justify-between text-xs text-gray-500 pr-2 w-10">
+                            <span className="font-medium">{maxValue}</span>
+                            <span>{Math.ceil(maxValue * 0.8)}</span>
+                            <span>{Math.ceil(maxValue * 0.6)}</span>
+                            <span>{Math.ceil(maxValue * 0.4)}</span>
+                            <span>{Math.ceil(maxValue * 0.2)}</span>
+                            <span className="font-medium">0</span>
+                          </div>
+                          
+                          {/* Chart bars */}
+                          <div className="absolute left-12 right-0 top-0 bottom-12 flex items-end justify-between gap-1">
+                            {stats.dailyStats.map((day, index) => {
+                              const heightPercent = maxValue > 0 ? (day.total / maxValue) * 100 : 0;
+                              const date = new Date(day.date + 'T00:00:00');
+                              const dayName = dayNames[date.getDay()];
+                              const isToday = new Date().toISOString().split('T')[0] === day.date;
+                              
+                              return (
+                                <div
+                                  key={index}
+                                  className="flex-1 flex flex-col items-center justify-end relative group"
+                                  style={{ minWidth: '20px' }}
+                                >
+                                  <div
+                                    className={`w-full rounded-t transition-all duration-300 relative ${
+                                      isToday 
+                                        ? 'bg-teal-600 hover:bg-teal-700 ring-2 ring-teal-400' 
+                                        : 'bg-teal-500 hover:bg-teal-600'
+                                    }`}
+                                    style={{ 
+                                      height: `${Math.max(heightPercent, 2)}%`,
+                                      minHeight: day.total > 0 ? '4px' : '2px'
+                                    }}
+                                  >
+                                    {/* Tooltip */}
+                                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10 pointer-events-none shadow-lg">
+                                      <div className="font-semibold mb-1">{day.date}</div>
+                                      <div>Total: {day.total}</div>
+                                      <div className="text-gray-300">
+                                        {day.contacts} Contacts, {day.cvs} CVs{day.consultations ? `, ${day.consultations} Consultations` : ''}
+                                      </div>
+                                      {isToday && <div className="mt-1 text-teal-300 text-xs">Today</div>}
+                                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Day label */}
+                                  <div className="mt-2 text-xs text-gray-600 font-medium">
+                                    {dayName.substring(0, 1)}
+                                  </div>
+                                  {/* Date number */}
+                                  <div className="text-xs text-gray-400">
+                                    {new Date(day.date).getDate()}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                          
+                          {/* X-axis line */}
+                          <div className="absolute left-12 right-0 bottom-12 border-t border-gray-300"></div>
+                        </>
+                      );
+                    })()}
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 flex justify-between text-xs text-gray-500 px-1">
-                    {['S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
-                      <span key={index}>{day}</span>
-                    ))}
+                ) : (
+                  <div className="h-64 flex items-center justify-center text-gray-500 border border-gray-200 rounded-lg bg-gray-50">
+                    No data available
                   </div>
-                  <div className="absolute left-0 top-0 bottom-8 flex flex-col justify-between text-xs text-gray-500 pr-2">
-                    <span>500</span>
-                    <span>400</span>
-                    <span>300</span>
-                    <span>200</span>
-                    <span>100</span>
-                    <span>0</span>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
 
