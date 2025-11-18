@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
     { path: '/admin/dashboard', label: 'HOME', icon: '🏠' },
     { path: '/admin/jobs', label: 'JOBS', icon: '💼' },
     { path: '/admin/cvs', label: 'RESUMES', icon: '📄' },
-    { path: '/admin/contacts', label: 'TASKS', icon: '✓' },
+    { path: '/admin/contacts', label: 'CONTACT', icon: '✓' },
     { path: '/admin/consultations', label: 'CONSULTATIONS', icon: '💬' },
   ];
 
