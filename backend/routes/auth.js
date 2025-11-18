@@ -14,20 +14,12 @@ router.post('/login', [
   body('password').notEmpty()
 ], async (req, res) => {
   try {
-    // Check database connection first
-    if (req.db && req.db.readyState !== 1) {
-      return res.status(503).json({
-        success: false,
-        message: 'Database connection unavailable. Please try again in a few moments.',
-        error: 'Database not connected'
-      });
-    }
-
-    // Check mongoose connection
+    // Check mongoose connection - only reject if truly disconnected
     const mongoose = require('mongoose');
     // readyState: 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
-    // Allow connection if it's connected (1) or connecting (2) - connecting means it's in progress
-    if (mongoose.connection.readyState === 0 || mongoose.connection.readyState === 3) {
+    // Only reject if completely disconnected (0) - allow connecting (2) and connected (1)
+    // This prevents false errors during connection establishment
+    if (mongoose.connection.readyState === 0) {
       return res.status(503).json({
         success: false,
         message: 'Database connection unavailable. Please try again in a few moments.',
