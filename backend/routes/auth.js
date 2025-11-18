@@ -81,13 +81,15 @@ router.post('/login', [
   } catch (error) {
     // Handle database connection errors specifically
     if (error.name === 'MongoServerError' || error.name === 'MongooseError' || error.message.includes('buffering timed out')) {
+      console.error('Database error during login:', error.message);
       return res.status(503).json({
         success: false,
-        message: 'Database connection unavailable. Please try again in a few moments.',
+        message: 'Database connection error. Please try again in a few moments.',
         error: 'Database connection error'
       });
     }
     
+    console.error('Login error:', error);
     res.status(500).json({
       success: false,
       message: 'Server error',
