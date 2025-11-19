@@ -103,7 +103,7 @@ const ResumeBuilding = () => {
             Let our experts help you create a resume that stands out and gets you the job you want.
           </p>
           <button 
-            onClick={() => navigate('/contact')} 
+            onClick={() => navigate('/submit-cv')} 
             className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105"
           >
             Start Building Your Resume
