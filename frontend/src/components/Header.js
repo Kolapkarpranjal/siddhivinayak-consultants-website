@@ -37,7 +37,7 @@ const Header = () => {
   };
 
   return (
-    <header className={`${scrolled ? 'bg-white shadow-2xl' : 'bg-white shadow-xl'} rounded-2xl mx-4 mt-4 sticky top-0 z-50 transition-all duration-500`}>
+    <header className={`${scrolled ? 'bg-white shadow-2xl' : 'bg-white shadow-xl'} rounded-lg sm:rounded-xl md:rounded-2xl mx-2 sm:mx-3 md:mx-4 mt-2 sm:mt-3 md:mt-4 sticky top-0 z-50 transition-all duration-500`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-2">
           {/* Logo */}
@@ -46,7 +46,7 @@ const Header = () => {
               <img 
                 src={logo} 
                 alt="Siddhivinayak Consultants Logo" 
-                className="h-24 w-auto object-contain m-0 p-0 block cursor-pointer transition-transform duration-200 ease-out hover:scale-105 active:scale-110"
+                className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto object-contain m-0 p-0 block cursor-pointer transition-transform duration-200 ease-out hover:scale-105 active:scale-110"
               />
               
             </a>

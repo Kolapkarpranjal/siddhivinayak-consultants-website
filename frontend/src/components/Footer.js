@@ -4,15 +4,15 @@ import footerLogo from '../assets/images/logo/logo1.png';
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white">
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {/* Company Info */}
           <div>
-            <img src={footerLogo} alt="Siddhivinayak Consultants Logo" className="h-14 w-auto mb-3 object-contain" />
-            <h3 className="text-xl font-bold text-blue-400 mb-3">
+            <img src={footerLogo} alt="Siddhivinayak Consultants Logo" className="h-10 sm:h-12 md:h-14 w-auto mb-3 object-contain" />
+            <h3 className="text-lg sm:text-xl font-bold text-blue-400 mb-3">
               Siddhivinayak Consultants
             </h3>
-            <p className="text-gray-300 leading-relaxed mb-3 text-sm">
+            <p className="text-gray-300 leading-relaxed mb-3 text-xs sm:text-sm">
               Your trusted partner for professional consulting services. 
               We help businesses achieve their goals through strategic guidance 
               and innovative solutions.
@@ -41,7 +41,7 @@ const Footer = () => {
           
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
+            <h3 className="text-base sm:text-lg font-semibold mb-3">Quick Links</h3>
             <ul className="space-y-2">
               <li>
                 <a href="/" className="text-gray-300 hover:text-blue-400 transition duration-300">
@@ -68,8 +68,8 @@ const Footer = () => {
           
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-3">Contact Info</h3>
-            <div className="space-y-2 text-sm">
+            <h3 className="text-base sm:text-lg font-semibold mb-3">Contact Info</h3>
+            <div className="space-y-2 text-xs sm:text-sm">
               <div className="flex items-start space-x-3">
                 <span className="text-blue-400 mt-1">📍</span>
                 <div>

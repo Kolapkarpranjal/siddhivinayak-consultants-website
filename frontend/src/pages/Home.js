@@ -197,7 +197,7 @@ const Home = () => {
         return null;
       })()}
       {/* Hero Section with Slider */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-[70vh] sm:h-[80vh] md:h-screen flex items-center justify-center overflow-hidden">
         {/* Background Images with Slider Effect */}
         <div className="absolute inset-0 z-0">
           {slides.map((slide, index) => (
@@ -226,7 +226,7 @@ const Home = () => {
           </div>
           
           {/* Dynamic Main Title */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2">
             {slides[currentSlide].title.split(' ').map((word, index) => (
               index === slides[currentSlide].title.split(' ').length - 1 ? (
                 <span key={index} className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
@@ -239,14 +239,14 @@ const Home = () => {
           </h1>
           
           {/* Dynamic Subtitle */}
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed px-4">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-300 mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto leading-relaxed px-4">
             {slides[currentSlide].subtitle}
           </p>
           
           {/* Call to Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 md:space-x-8 px-4">
             {/* Schedule Consultation Button */}
-            <button onClick={() => navigate('/consultation')} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg transition duration-300 transform hover:scale-105 flex items-center space-x-2 shadow-lg">
+            <button onClick={() => navigate('/consultation')} className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg text-sm sm:text-base">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
@@ -264,7 +264,7 @@ const Home = () => {
             </div>
             
             {/* Explore Services Button */}
-            <button onClick={() => navigate('/services')} className="bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold px-8 py-4 rounded-lg transition duration-300 hover:bg-white/20 flex items-center space-x-2">
+            <button onClick={() => navigate('/services')} className="w-full sm:w-auto bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition duration-300 hover:bg-white/20 flex items-center justify-center space-x-2 text-sm sm:text-base">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
@@ -290,60 +290,60 @@ const Home = () => {
       </section>
       
       {/* Statistics Section */}
-      <section ref={statsReveal.ref} className={`py-20 bg-white transition-all duration-700 ease-out ${statsReveal.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+      <section ref={statsReveal.ref} className={`py-12 sm:py-16 md:py-20 bg-white transition-all duration-700 ease-out ${statsReveal.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-4">
               An integral part of corporate India's journey
             </h2>
-            <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed px-4">
               Trusted advisors to multinationals, leading Indian businesses and leadership professionals
             </p>
           </div>
           {/* Statistics Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8">
             {/* Years of Market Leadership */}
             <div className="text-center">
-              <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-lg sm:text-3xl font-bold text-white">{animatedStats.years}+</span>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg">
+                <span className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">{animatedStats.years}+</span>
               </div>
-              <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
+              <p className="text-gray-900 font-medium text-center text-xs sm:text-sm md:text-base leading-tight px-1">
                 Years of market leadership
               </p>
             </div>
             {/* Careers Built */}
             <div className="text-center">
-              <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-lg sm:text-3xl font-bold text-white">{animatedStats.careers}k+</span>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg">
+                <span className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">{animatedStats.careers}k+</span>
               </div>
-              <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
+              <p className="text-gray-900 font-medium text-center text-xs sm:text-sm md:text-base leading-tight px-1">
                 Careers built to date
               </p>
             </div>
             {/* Consultants Pan India */}
             <div className="text-center">
-              <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-lg sm:text-3xl font-bold text-white">{animatedStats.consultants}+</span>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg">
+                <span className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">{animatedStats.consultants}+</span>
               </div>
-              <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
+              <p className="text-gray-900 font-medium text-center text-xs sm:text-sm md:text-base leading-tight px-1">
                 Consultants pan India
               </p>
             </div>
             {/* Industry Specializations */}
             <div className="text-center">
-              <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-lg sm:text-3xl font-bold text-white">{animatedStats.industries}</span>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg">
+                <span className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">{animatedStats.industries}</span>
               </div>
-              <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
+              <p className="text-gray-900 font-medium text-center text-xs sm:text-sm md:text-base leading-tight px-1">
                 Industry specialisations
               </p>
             </div>
             {/* Offices Across India */}
             <div className="text-center">
-              <div className="w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-lg sm:text-3xl font-bold text-white">{animatedStats.offices}</span>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg">
+                <span className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">{animatedStats.offices}</span>
               </div>
-              <p className="text-gray-900 font-medium text-center text-sm sm:text-base">
+              <p className="text-gray-900 font-medium text-center text-xs sm:text-sm md:text-base leading-tight px-1">
                 Offices across India
               </p>
             </div>
@@ -352,20 +352,20 @@ const Home = () => {
       </section>
       
       {/* Our Features Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-4">
               Our Features
             </h2>
-            <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed px-4">
               Discover what makes us the preferred choice for recruitment solutions
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Feature 1 */}
-            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+            <div className="group relative bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-bl-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -383,7 +383,7 @@ const Home = () => {
             </div>
 
             {/* Feature 2 */}
-            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+            <div className="group relative bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-bl-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -401,7 +401,7 @@ const Home = () => {
             </div>
 
             {/* Feature 3 */}
-            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+            <div className="group relative bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-bl-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -419,7 +419,7 @@ const Home = () => {
             </div>
 
             {/* Feature 4 */}
-            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+            <div className="group relative bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-bl-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -437,7 +437,7 @@ const Home = () => {
             </div>
 
             {/* Feature 5 */}
-            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+            <div className="group relative bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-bl-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -455,7 +455,7 @@ const Home = () => {
             </div>
 
             {/* Feature 6 */}
-            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+            <div className="group relative bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-pink-500 to-rose-500 rounded-bl-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -494,13 +494,13 @@ const Home = () => {
       </section>
       
       {/* Our Journey Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 md:py-20 bg-white">
         <div ref={journeyReveal.ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out ${journeyReveal.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-4 sm:mb-6 px-4">
               Our Journey
             </h2>
-            <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed px-4">
               Working since 2013 for all type industries. Provides recruitment solutions. We are committed to work ethically with deep understanding of our Client Needs on Time.
             </p>
           </div>
@@ -597,11 +597,11 @@ const Home = () => {
       {/* Industry Specialisations Section */}
       <section className="py-20 bg-gray-50">
         <div ref={industryReveal.ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out ${industryReveal.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-4">
               Industry Specialisations
             </h2>
-            <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed px-4">
               We recognize that each industry has its own nuances in terms of management style, hiring practices and compensation norms. To provide clients with specialized search solutions, Siddhivinayak has developed expertise in the following industries
             </p>
           </div>
@@ -672,13 +672,13 @@ const Home = () => {
       </section>
       
       {/* Our Services Section */}
-      <section id="our-services" className="py-20 bg-blue-900">
+      <section id="our-services" className="py-12 sm:py-16 md:py-20 bg-blue-900">
         <div ref={servicesReveal.ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out ${servicesReveal.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 px-4">
               Our Services
             </h2>
-            <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed px-4">
               Siddhivinayak Consultants, through its executive search and talent advisory services has been an integral part of Corporate India since 1969
             </p>
           </div>

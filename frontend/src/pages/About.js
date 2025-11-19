@@ -89,8 +89,8 @@ const About = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto" data-aos="fade-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">About Us</h2>
-            <div className="space-y-6 text-gray-700 leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">About Us</h2>
+            <div className="space-y-4 sm:space-y-6 text-gray-700 leading-relaxed text-sm sm:text-base">
               <p>
                 Siddhivinayak Employment Services is a leading service provider of recruitment and training needs, providing exceptional services to our clients and job seekers across the country. Established in the year 2013, we are a professionally managed placement and training consultancy firm with a network across India. We have built enduring relationships with our clients across India.
               </p>

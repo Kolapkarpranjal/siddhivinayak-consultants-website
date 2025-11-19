@@ -186,7 +186,7 @@ const BrowseJobs = () => {
         <div className="relative h-full flex items-center justify-center text-center px-4 z-20">
           <div className="max-w-5xl mx-auto">
             {/* Main Title with Gradient */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-4 md:mb-6 drop-shadow-2xl">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 md:mb-6 drop-shadow-2xl">
               <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent animate-gradient">
                 Browse Jobs
               </span>

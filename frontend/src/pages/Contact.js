@@ -152,16 +152,16 @@ const Contact = () => {
           </div>
 
           {/* Right modern form card */}
-          <div className="bg-white rounded-2xl shadow-md p-8">
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900">We'd love to help</h2>
-              <p className="text-gray-600">Reach out and we'll get in touch within 24 hours.</p>
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-md p-4 sm:p-6 md:p-8">
+            <div className="mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">We'd love to help</h2>
+              <p className="text-sm sm:text-base text-gray-600">Reach out and we'll get in touch within 24 hours.</p>
             </div>
 
             {/* Requirements Request Section */}
-            <div className="bg-blue-50 rounded-lg p-6 mb-8">
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Resourcing Requirements</h3>
-              <p className="text-gray-700 leading-relaxed mb-4">
+            <div className="bg-blue-50 rounded-lg p-4 sm:p-6 mb-6 sm:mb-8">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3">Resourcing Requirements</h3>
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4">
                 We request you to forward us the requirements time to time with criteria. Assuring you of committed engagement & our quality services.
               </p>
               <p className="text-gray-700 font-medium">
