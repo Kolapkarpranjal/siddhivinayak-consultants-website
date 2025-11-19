@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import heroImage from '../../assets/images/hero/hero.jpg';
 
 const StaffRecruitment = () => {
+  const navigate = useNavigate();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -172,7 +174,10 @@ const StaffRecruitment = () => {
           <p className="text-xl mb-6 opacity-90">
             Let us help you identify and recruit the perfect candidate for your organization.
           </p>
-          <button className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition duration-300">
+          <button 
+            onClick={() => navigate('/contact')} 
+            className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105"
+          >
             Get Started Today
           </button>
         </div>

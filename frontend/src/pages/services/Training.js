@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import heroImage from '../../assets/images/hero/hero.jpg';
 
 const Training = () => {
+  const navigate = useNavigate();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -100,7 +102,10 @@ const Training = () => {
           <p className="text-xl mb-6 opacity-90">
             Invest in your team's development and drive organizational growth with our training programs.
           </p>
-          <button className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition duration-300">
+          <button 
+            onClick={() => navigate('/contact')} 
+            className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105"
+          >
             Explore Training Programs
           </button>
         </div>

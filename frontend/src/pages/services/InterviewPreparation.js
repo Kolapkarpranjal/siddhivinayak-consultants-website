@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import heroImage from '../../assets/images/hero/hero.jpg';
 
 const InterviewPreparation = () => {
+  const navigate = useNavigate();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -100,7 +102,10 @@ const InterviewPreparation = () => {
           <p className="text-xl mb-6 opacity-90">
             Build confidence and master interview skills with our comprehensive preparation programs.
           </p>
-          <button className="bg-white text-indigo-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition duration-300">
+          <button 
+            onClick={() => navigate('/contact')} 
+            className="bg-white text-indigo-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105"
+          >
             Start Preparing Today
           </button>
         </div>
