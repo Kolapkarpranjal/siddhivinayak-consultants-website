@@ -25,10 +25,8 @@ const Layout = ({ children }) => {
   ];
 
   const adminMenuItems = [
-    { path: '/admin/users', label: 'USERS', icon: '👥' },
-    { path: '/admin/locations', label: 'LOCATIONS', icon: '📍' },
-    { path: '/admin/workflows', label: 'WORKFLOWS', icon: '⚙️' },
-    { path: '/admin/jobs', label: 'JOB BOARDS', icon: '📋' },
+    // Removed: USERS, LOCATIONS, WORKFLOWS as requested
+    // { path: '/admin/jobs', label: 'JOB BOARDS', icon: '📋' }, // Removed - duplicate of JOBS in main menu
   ];
 
   const getInitials = (name) => {
@@ -103,32 +101,34 @@ const Layout = ({ children }) => {
               ))}
             </div>
 
-            <div>
-              <p className="text-blue-300 text-xs font-semibold uppercase tracking-wider px-4 mb-3">Admin</p>
-              {adminMenuItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => {
-                    // Close sidebar on mobile after navigation
-                    if (window.innerWidth < 1024) {
-                      setSidebarOpen(false);
-                    }
-                  }}
-                  className={`relative flex items-center px-4 py-3 text-sm font-medium transition-colors ${
-                    location.pathname === item.path
-                      ? 'text-white bg-blue-800'
-                      : 'text-blue-200 hover:text-white hover:bg-blue-800/50'
-                  }`}
-                >
-                  {location.pathname === item.path && (
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-white"></div>
-                  )}
-                  <span className="mr-3 text-lg">{item.icon}</span>
-                  <span>{item.label}</span>
-                </Link>
-              ))}
-            </div>
+            {adminMenuItems.length > 0 && (
+              <div>
+                <p className="text-blue-300 text-xs font-semibold uppercase tracking-wider px-4 mb-3">Admin</p>
+                {adminMenuItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => {
+                      // Close sidebar on mobile after navigation
+                      if (window.innerWidth < 1024) {
+                        setSidebarOpen(false);
+                      }
+                    }}
+                    className={`relative flex items-center px-4 py-3 text-sm font-medium transition-colors ${
+                      location.pathname === item.path
+                        ? 'text-white bg-blue-800'
+                        : 'text-blue-200 hover:text-white hover:bg-blue-800/50'
+                    }`}
+                  >
+                    {location.pathname === item.path && (
+                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-white"></div>
+                    )}
+                    <span className="mr-3 text-lg">{item.icon}</span>
+                    <span>{item.label}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
           </nav>
         </div>
       </div>
